@@ -7,3 +7,6 @@ image: assets/images/16.jpg
 ---
 This article will be completed later I wrote this to not forget
 ## TODO
+
+## References
+* https://youtu.be/Lc3dHbQ-CFo?t=380
