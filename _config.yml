@@ -1,11 +1,11 @@
 # Site
 name: "CookieCode"
 title: "CookieCode"
-description: "Jekyll template, Medium styled, free for bloggers."
+description: "CookieCode"
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/logo.png'
 baseurl: /
-google_analytics: 'UA-46278016-1'
+google_analytics: 'UA-91985102-2'
 disqus: 'cookiecode-dev'
 mailchimp-list: 'https://wowthemes.us11.list-manage.com/subscribe/post?u=8aeb20a530e124561927d3bd8&amp;id=8c3d2d214b'
 include: ["_pages"]
@@ -20,7 +20,7 @@ authors:
     email: sebastien.vermeille@gmail.com
     web:
     twitter:
-    description: "Author of CookieCode, Clean Code principles supporter."
+    description: "Author of CookieCode, Clean Code principles supporter, I like code smells only when they smell as good as cookies."
 #  john:
 #    name: John
 #    display_name: John
