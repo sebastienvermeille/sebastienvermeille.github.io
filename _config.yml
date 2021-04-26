@@ -7,7 +7,7 @@ favicon: 'assets/images/logo.png'
 baseurl: /
 google_analytics: 'UA-91985102-2'
 disqus: 'cookiecode-dev'
-mailchimp-list: 'https://wowthemes.us11.list-manage.com/subscribe/post?u=8aeb20a530e124561927d3bd8&amp;id=8c3d2d214b'
+#mailchimp-list: 'https://wowthemes.us11.list-manage.com/subscribe/post?u=8aeb20a530e124561927d3bd8&amp;id=8c3d2d214b'
 include: ["_pages"]
 permalink: /:title/
 
@@ -18,9 +18,8 @@ authors:
     display_name: sbeex
     gravatar: db2e260f57e40ade7907bc303a295b70
     email: sebastien.vermeille@gmail.com
-    web:
-    twitter:
-    description: "Author of CookieCode, Clean Code principles supporter, I like code smells only when they smell as good as cookies."
+    web: https://cookiecode.dev/
+    description: "Author of CookieCode, Clean Code principles supporter."
 #  john:
 #    name: John
 #    display_name: John
