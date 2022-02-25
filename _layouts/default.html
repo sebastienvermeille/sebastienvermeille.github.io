@@ -18,6 +18,7 @@
 
 <script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>
 
+    <script src="{{ site.baseurl }}/assets/js/theme-switcher.js"></script>
 </head>
 
 {% if jekyll.environment == 'production' %}
@@ -33,7 +34,7 @@ ga('send', 'pageview');
 {% endif %}
 
 {% capture layout %}{% if page.layout %}layout-{{ page.layout }}{% endif %}{% endcapture %}
-<body class="{{layout}}">
+<body class="{{layout}} {{ page.subtheme }}">
 	<!-- defer loading of font and font awesome -->
 	<noscript id="deferred-styles">
 		<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
@@ -43,12 +44,12 @@ ga('send', 'pageview');
 
 <!-- Begin Menu Navigation
 ================================================== -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+<nav class="gradient-bg navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
 
     <div class="container pr-0">
 
     <!-- Begin Logo -->
-    <a class="navbar-brand" href="{{ site.baseurl }}/">
+    <a class="navbar-brand" href="{{ site.baseurl }}/">{{ site.name }}
     <img src="{{ site.baseurl }}/{{ site.logo }}" alt="{{ site.name }}">
     </a>
     <!-- End Logo -->
@@ -70,10 +71,12 @@ ga('send', 'pageview');
                 {% endif %}
                 <a class="nav-link" href="{{ site.baseurl }}/index.html">Blog</a>
                 </li>
-
-<!--                <li class="nav-item">-->
-<!--                <a class="nav-link" href="{{ site.baseurl }}/about">About</a>-->
-<!--                </li>-->
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ site.baseurl }}/oss/">Open Source</a>
+                </li>
+               <li class="nav-item">
+                    <a class="nav-link" href="{{ site.baseurl }}/about/">About me</a>
+                </li>
 
                 {% include search-lunr.html %}
 
@@ -87,19 +90,22 @@ ga('send', 'pageview');
 </nav>
 <!-- End Navigation
 ================================================== -->
-
+    <label class="theme_changer">
+        <input theme_toggle type="checkbox">
+        <div class="button"></div>
+    </label>
 <div class="site-content">
 
 <div class="container">
 
-<!-- Site Title
-================================================== -->
-<div class="mainheading">
-    <h1 class="sitetitle">{{ site.name }}</h1>
-    <p class="lead">
-        {{ site.description }}
-    </p>
-</div>
+<!--&lt;!&ndash; Site Title-->
+<!--================================================== &ndash;&gt;-->
+<!--<div class="mainheading">-->
+<!--    <h1 class="sitetitle">{{ site.name }}</h1>-->
+<!--    <p class="lead">-->
+<!--        {{ site.description }}-->
+<!--    </p>-->
+<!--</div>-->
 
 <!-- Content
 ================================================== -->
@@ -125,43 +131,58 @@ ga('send', 'pageview');
     
 </div>
 
-<!-- Categories Jumbotron
-================================================== -->
-<div class="jumbotron fortags">
-	<div class="d-md-flex h-100">
-		<div class="col-md-4 transpdark align-self-center text-center h-100">
-            <div class="d-md-flex align-items-center justify-content-center h-100">
-                <h2 class="d-md-block align-self-center py-1 font-weight-light">Explore <span class="d-none d-md-inline">→</span></h2>
-            </div>
-		</div>
-		<div class="col-md-8 p-5 align-self-center text-center">
-            {% assign categories_list = site.categories %}
-            {% if categories_list.first[0] == null %}
-                {% for category in categories_list %}
-                    <a class="mt-1 mb-1" href="{{site.baseurl}}/categories#{{ category | url_escape | strip | replace: ' ', '-' }}">{{ category | camelcase }} ({{ site.tags[category].size }})</a>
-                {% endfor %}
-            {% else %}
-                {% for category in categories_list %}
-                    <a class="mt-1 mb-1" href="{{site.baseurl}}/categories#{{ category[0] | url_escape | strip | replace: ' ', '-' }}">{{ category[0] | camelcase }} ({{ category[1].size }})</a>
-                {% endfor %}
-            {% endif %}
-            {% assign categories_list = nil %}
-		</div>
-	</div>
-</div>
+<!--&lt;!&ndash; Categories Jumbotron-->
+<!--================================================== &ndash;&gt;-->
+<!--<div class="jumbotron fortags">-->
+<!--	<div class="d-md-flex h-100">-->
+<!--		<div class="col-md-8 p-5 align-self-center text-center">-->
+<!--            {% assign categories_list = site.categories %}-->
+<!--            {% if categories_list.first[0] == null %}-->
+<!--                {% for category in categories_list %}-->
+<!--                    <a class="mt-1 mb-1" href="{{site.baseurl}}/categories#{{ category | url_escape | strip | replace: ' ', '-' }}">{{ category | camelcase }} ({{ site.tags[category].size }})</a>-->
+<!--                {% endfor %}-->
+<!--            {% else %}-->
+<!--                {% for category in categories_list %}-->
+<!--                    <a class="mt-1 mb-1" href="{{site.baseurl}}/categories#{{ category[0] | url_escape | strip | replace: ' ', '-' }}">{{ category[0] | camelcase }} ({{ category[1].size }})</a>-->
+<!--                {% endfor %}-->
+<!--            {% endif %}-->
+<!--            {% assign categories_list = nil %}-->
+<!--		</div>-->
+<!--	</div>-->
+<!--</div>-->
 
 <!-- Begin Footer
 ================================================== -->
 <footer class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-sm-6 text-center text-lg-left">
-                Copyright © {{ site.time | date: "%Y" }} {{ site.name }} 
-            </div>
-<!--            <div class="col-md-6 col-sm-6 text-center text-lg-right">    -->
-<!--                <a target="_blank" href="https://www.wowthemes.net/mediumish-free-jekyll-template/">Mediumish Jekyll Theme</a> by WowThemes.net-->
-<!--            </div>-->
-        </div>
+    <div class="footer-top"></div>
+    <div class="footer-content">
+
+<!--        Popular tags-->
+<!--        <ul class="tags-list">-->
+<!--            {% assign categories_list = site.categories %}-->
+<!--            {% if categories_list.first[0] == null %}-->
+<!--                {% for category in categories_list %}-->
+<!--                <li>-->
+<!--                    <a href="{{site.baseurl}}/categories#{{ category | url_escape | strip | replace: ' ', '-' }}">{{ category | camelcase }} ({{ site.tags[category].size }})</a>-->
+<!--                </li>-->
+<!--                {% endfor %}-->
+<!--                {% else %}-->
+<!--                {% for category in categories_list %}-->
+<!--                <li>-->
+<!--                    <a href="{{site.baseurl}}/categories#{{ category[0] | url_escape | strip | replace: ' ', '-' }}">{{ category[0] | camelcase }} ({{ category[1].size }})</a>-->
+<!--                </li>-->
+<!--                {% endfor %}-->
+<!--            {% endif %}-->
+<!--            {% assign categories_list = nil %}-->
+<!--            </li>-->
+<!--        </ul>-->
+
+    </div>
+    <div class="separator-line"></div>
+    <div class="footer-bottom">
+        <p class="text-center">
+            Copyright © {{ site.time | date: "%Y" }} {{ site.name }}
+        </p>
     </div>
 </footer>
 <!-- End Footer
@@ -182,7 +203,7 @@ ga('send', 'pageview');
 <script src="{{ site.baseurl }}/assets/js/lazyload.js"></script>
 {% endif %}
 
-<script src="{{ site.baseurl }}/assets/js/ie10-viewport-bug-workaround.js"></script> 
+<script src="{{ site.baseurl }}/assets/js/ie10-viewport-bug-workaround.js"></script>
 
 {% if page.layout == 'post' %}
 <script id="dsq-count-scr" src="//{{site.disqus}}.disqus.com/count.js"></script>

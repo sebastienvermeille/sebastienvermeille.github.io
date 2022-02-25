@@ -4,8 +4,8 @@ title: "CookieCode"
 description: "CookieCode"
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/logo.png'
-baseurl: "/cookiecode"
 url: "https://cookiecode.dev"
+baseurl: "/cookie"
 google_analytics: 'UA-91985102-2'
 disqus: 'cookiecode-dev'
 #mailchimp-list: 'https://wowthemes.us11.list-manage.com/subscribe/post?u=8aeb20a530e124561927d3bd8&amp;id=8c3d2d214b'
@@ -39,6 +39,8 @@ plugins:
   - jekyll-seo-tag
   - jekyll-archives
 
+gems: [emoji_for_jekyll]
+
 # Archives
 jekyll-archives:
   enabled:
@@ -68,5 +70,9 @@ adsense-data-ad-slot: "1363087678"
 
 # Lazy Images ("enabled" or "disabled")
 lazyimages: "disabled"
+
+collections:
+  oss:
+    output: true
 
 exclude: [changelog.md, LICENSE.txt, README.md, Gemfile, Gemfile.lock]

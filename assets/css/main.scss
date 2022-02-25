@@ -13,3 +13,235 @@
 	"syntax",
     "starsnonscss"
 ;
+
+
+$themes: (
+	dark: (
+					primary: white,
+					secondary: grey,
+					primary-bg-color: black
+	),
+	light: (
+					primary: #4287f5,
+					secondary: #666666,
+					primary-bg-color: white
+	)
+);
+
+$sub-themes: (
+		java: (
+						primary: rgba(144, 30, 193, 1),
+						secondary: rgb(107, 73, 238),
+						text-on-gradient-color: white,
+						gradient: linear-gradient(to right, rgba(144, 30, 193, 1) 0%, rgb(107, 73, 238) 51%, rgba(144, 30, 193, 1) 100%)
+		),
+		docker: (
+						primary: rgba(144, 30, 193, 1),
+						secondary: rgb(107, 73, 238),
+						text-on-gradient-color: white,
+						gradient: linear-gradient(to right,#051937, #004d7a, #008793, #00bf72, #a8eb12)
+		),
+		simple-page: (
+						primary: rgba(144, 30, 193, 1),
+						secondary: rgb(107, 73, 238),
+						text-on-gradient-color: white,
+						gradient: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%)
+		),
+		oss: (
+						primary: rgba(144, 30, 193, 1),
+						secondary: rgb(107, 73, 238),
+						text-on-gradient-color: white,
+						gradient: linear-gradient(90deg, #9ebd13 0%, #008552 100%)
+		),
+		error: (
+			primary: rgba(144, 30, 193, 1),
+			secondary: rgb(107, 73, 238),
+			text-on-gradient-color: white,
+			gradient: linear-gradient(90deg, #9ebd13 0%, #008552 100%)
+		)
+);
+
+@mixin theme($themes: $themes) {
+	@each $theme, $colors in $themes {
+		.theme-#{$theme} & {
+			@content($colors);
+		}
+	}
+}
+
+@mixin sub-theme($themes: $sub-themes) {
+	@each $theme, $colors in $themes {
+		.sub-theme-#{$theme} & {
+			@content($colors);
+		}
+	}
+}
+
+.gradient-bg {
+	@include sub-theme using ($colors) {
+		background: map-get($colors, gradient);
+		color: map-get($colors, text-on-gradient-color);
+	}
+
+	//background: linear-gradient(to right, rgba(144, 30, 193, 1) 0%, rgb(107, 73, 238) 51%, rgba(144, 30, 193, 1) 100%);
+	background-size: 200% auto;
+	position: relative;
+}
+
+.gradient-text {
+	@include sub-theme using ($colors) {
+		background-image: map-get($colors, gradient);
+	}
+
+	//background-image: linear-gradient(to right, rgba(144, 30, 193, 1) 0%, rgb(107, 73, 238) 51%, rgba(144, 30, 193, 1) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.footer {
+	background-size: 200% auto;
+	position: absolute;
+	width:100%;
+	padding-top: 220px;
+
+	//background: linear-gradient(to right, rgba(144, 30, 193, 1) 0%, rgb(107, 73, 238) 51%, rgba(144, 30, 193, 1) 100%);
+	//color:white;
+	bottom: 0;
+
+	@include sub-theme using ($colors) {
+		background: map-get($colors, gradient);
+		color: map-get($colors, text-on-gradient-color);
+	}
+}
+
+body {
+	@include theme using ($colors) {
+		background: map-get($colors, primary-bg-color);
+		color: map-get($colors, primary);
+	}
+}
+
+
+.footer-bottom > p {
+	padding-bottom:20px;
+}
+
+.text-center {
+	text-align:center;
+}
+
+.footer-top
+{
+	@include theme using ($colors) {
+		background-color: map-get($colors, primary-bg-color);
+	}
+
+	-webkit-mask: url(../theme/footer-top.svg) no-repeat 100% 100%;
+	mask: url(../theme/footer-top.svg) no-repeat 100% 100%;
+	-webkit-mask-size: cover;
+	mask-size: cover;
+
+
+	//background-image: url(../theme/footer-top.svg);
+	background-size: 100% 204px;
+	top: 0;
+	height: 180px;
+	z-index: 1;
+	margin-top: -1px;
+	position: absolute;
+	width: 100%;
+	pointer-events: none;
+	transform: rotate(180deg);
+}
+
+//.footer-top
+//{
+//	background-image: url(../theme/footer-top.svg);
+//	background-size: 100% 204px;
+//	top: 0;
+//	height: 180px;
+//	z-index: 1;
+//	margin-top: -1px;
+//	position: absolute;
+//	width: 100%;
+//	pointer-events: none;
+//	transform: rotate(180deg);
+//}
+
+ul.tags-list {
+	list-style-type: none;
+}
+
+ul.tags-list > li {
+	border-radius: 30px;
+	padding: 5px 8px;
+	display:inline-flex;
+
+	background-image: linear-gradient(to right, #901ec1 0%, #7450fe 51%, #901ec1 100%);
+	-webkit-transition: all 500ms;
+	transition: all 500ms;
+	background-size: 200% auto;
+	color: #fff !important;
+	border:1px solid white;
+}
+
+ul.tags-list > li > a {
+	color: white;
+}
+
+.btn-gradiant {
+		background-image: linear-gradient(to right, #901ec1 0%, #7450fe 51%, #901ec1 100%);
+		-webkit-transition: all 500ms;
+		transition: all 500ms;
+		background-size: 200% auto;
+		color: #fff !important;
+}
+
+.separator-line {
+	text-align: center;
+	padding: 15px 0;
+	border-top: 1px solid rgba(255, 255, 255, 0.18);
+	width:80%;
+	margin: 30px auto auto;
+}
+
+
+/*======================
+   Page template
+=======================*/
+.article-post {
+	@include theme using ($colors) {
+		color: map-get($colors, primary);
+	}
+}
+
+/*======================
+    404 page
+=======================*/
+
+
+.page_404{ padding:40px 0; background:#fff; font-family: 'Arvo', serif;
+}
+
+.page_404 img{ width:100%;}
+
+.four_zero_four_bg{
+
+	background-image: url(./../theme/404.gif);
+	height: 400px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+
+.four_zero_four_bg h1{
+	font-size:80px;
+}
+
+.link_404{
+	color: #fff!important;
+	padding: 10px 20px;
+	background: #39ac31;
+	margin: 20px 0;
+	display: inline-block;}
+.contant_box_404{ margin-top:-50px;}

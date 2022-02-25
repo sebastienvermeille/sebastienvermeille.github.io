@@ -1,0 +1,33 @@
+---
+layout: default
+title: Open Source Software
+permalink: /oss/
+subtheme: sub-theme-oss
+---
+
+<!-- OSS article Index
+================================================== -->
+<section class="recent-posts">
+
+    <div class="section-title">
+
+        <h2 class="gradient-text">OSS projects I maintain or contribute actively</h2>
+
+        {% for project in site.oss %}
+        <h2>{{ project.title }}</h2>
+        <p>{{ project.description }}</p>
+        <p><a href="{{ site.baseurl }}{{ project.url }}">{{ project.title }}</a></p>
+        {% endfor %}
+
+    </div>
+
+</section>
+
+<!-- Pagination
+================================================== -->
+<div class="bottompagination">
+    <div class="pointerup"><i class="fa fa-caret-up"></i></div>
+    <span class="navigation" role="navigation">
+    {% include pagination.html %}
+</span>
+</div>

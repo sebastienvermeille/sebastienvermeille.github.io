@@ -4,6 +4,7 @@ title:  "How to handle exceptions on @RestController with springboot webflux whe
 author: sbeex
 categories: [ spring, tutorial, reactive ]
 image: assets/images/articles/springboot-reactive.png
+subtheme: sub-theme-java
 ---
 This article will be completed later I wrote this to not forget
 ## TODO

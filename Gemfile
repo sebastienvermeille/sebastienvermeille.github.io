@@ -15,3 +15,5 @@ group :jekyll_plugins do
   gem 'rouge'
 end
 gem "webrick", "~> 1.7"
+gem 'emoji_for_jekyll'
+

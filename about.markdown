@@ -1,18 +1,23 @@
 ---
 layout: page
-title: About
+title: About me
 permalink: /about/
+subtheme: sub-theme-simple-page
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+Developer Advocate, enthusiast attracted by Clean Code concepts and maintainability principles (yeah for real... I really like to cleanup code).
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+##### Languages
+I consider myself as language agnostic beside the fact that I mostly use to program in JAVA. It's just syntax after all.
+The most important concepts are valid for all languages, what is required is the "Programmer spirit".
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+##### OSS supporter
+As most of developers, I used to consume open source software (in professional life but also for private projects).
+No doubt about the amazing job that these people do (biggup to them btw).
+
+Since a few years now, I also try to contribute to this amazing world of OSS. 
+I am surely not maintainer of huge projects such as Linux Kernel but still I try to share what I can with others at my level :)
+
+If you are interested to my open sources contributions you can have a look at my [open source projects](./../oss/) or my contributions on [github](https://github.com/sebastienvermeille).
 
 
-[jekyll-organization]: https://github.com/jekyll
