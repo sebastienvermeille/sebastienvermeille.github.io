@@ -9,7 +9,7 @@
 }
 
 // Import partials from `sass_dir` (defaults to `_sass`)
-@import
+@import "vendor/fomantic-ui/stylesheets/semantic-ui",
 	"syntax",
     "starsnonscss"
 ;
@@ -79,7 +79,7 @@ $sub-themes: (
 
 .gradient-bg {
 	@include sub-theme using ($colors) {
-		background: map-get($colors, gradient);
+		background: map-get($colors, gradient) !important;
 		color: map-get($colors, text-on-gradient-color);
 	}
 
@@ -98,21 +98,6 @@ $sub-themes: (
 	-webkit-text-fill-color: transparent;
 }
 
-.footer {
-	background-size: 200% auto;
-	position: absolute;
-	width:100%;
-	padding-top: 220px;
-
-	//background: linear-gradient(to right, rgba(144, 30, 193, 1) 0%, rgb(107, 73, 238) 51%, rgba(144, 30, 193, 1) 100%);
-	//color:white;
-	bottom: 0;
-
-	@include sub-theme using ($colors) {
-		background: map-get($colors, gradient);
-		color: map-get($colors, text-on-gradient-color);
-	}
-}
 
 body {
 	@include theme using ($colors) {
@@ -121,52 +106,9 @@ body {
 	}
 }
 
-
-.footer-bottom > p {
-	padding-bottom:20px;
-}
-
 .text-center {
 	text-align:center;
 }
-
-.footer-top
-{
-	@include theme using ($colors) {
-		background-color: map-get($colors, primary-bg-color);
-	}
-
-	-webkit-mask: url(../theme/footer-top.svg) no-repeat 100% 100%;
-	mask: url(../theme/footer-top.svg) no-repeat 100% 100%;
-	-webkit-mask-size: cover;
-	mask-size: cover;
-
-
-	//background-image: url(../theme/footer-top.svg);
-	background-size: 100% 204px;
-	top: 0;
-	height: 180px;
-	z-index: 1;
-	margin-top: -1px;
-	position: absolute;
-	width: 100%;
-	pointer-events: none;
-	transform: rotate(180deg);
-}
-
-//.footer-top
-//{
-//	background-image: url(../theme/footer-top.svg);
-//	background-size: 100% 204px;
-//	top: 0;
-//	height: 180px;
-//	z-index: 1;
-//	margin-top: -1px;
-//	position: absolute;
-//	width: 100%;
-//	pointer-events: none;
-//	transform: rotate(180deg);
-//}
 
 ul.tags-list {
 	list-style-type: none;
@@ -206,6 +148,32 @@ ul.tags-list > li > a {
 }
 
 
+//HEADER
+.ui.menu .item img.logo {
+	margin-right: 1.5em;
+}
+.main.container {
+	margin-top: 7em;
+}
+.ui.footer.segment {
+	margin: 5em 0em 0em;
+	padding: 5em 0em;
+}
+
+/*======================
+ Fix footer position
+ source: https://github.com/philipwalton/solved-by-flexbox/blob/master/assets/css/components/site.css
+=======================*/
+body {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+footer {
+	margin-top:auto;
+}
+
 /*======================
    Page template
 =======================*/
@@ -214,6 +182,52 @@ ul.tags-list > li > a {
 		color: map-get($colors, primary);
 	}
 }
+
+/*======================
+    Footer
+=======================*/
+.footer {
+	background-size: 200% auto;
+	position: relative;
+	width:100%;
+	padding-top: 220px;
+	bottom: 0;
+
+	@include sub-theme using ($colors) {
+		background: map-get($colors, gradient);
+		color: map-get($colors, text-on-gradient-color);
+	}
+}
+
+.footer-bottom > p {
+	padding-bottom:20px;
+}
+
+
+.footer-top
+{
+	@include theme using ($colors) {
+		background-color: map-get($colors, primary-bg-color);
+	}
+
+	-webkit-mask: url(../theme/footer-top.svg) no-repeat 100% 100%;
+	mask: url(../theme/footer-top.svg) no-repeat 100% 100%;
+	-webkit-mask-size: cover;
+	mask-size: cover;
+
+
+	//background-image: url(../theme/footer-top.svg);
+	background-size: 100% 204px;
+	top: 0;
+	height: 180px;
+	z-index: 1;
+	margin-top: -1px;
+	position: absolute;
+	width: 100%;
+	pointer-events: none;
+	transform: rotate(180deg);
+}
+
 
 /*======================
     404 page

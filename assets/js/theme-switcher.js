@@ -30,7 +30,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', e => {
-        console.clear();
+        // console.clear();
 
         const userThemePreference = themePreference();
         const toggle = document.querySelector('[theme_toggle]');
@@ -42,11 +42,13 @@
                     toggle.checked = true;
                     html.classList.add('theme-dark');
                     html.classList.remove('theme-light');
+                    $('*').not('.no-dark').addClass('inverted');
                     break;
                 case 'light':
                     toggle.checked = false;
                     html.classList.remove('theme-dark');
                     html.classList.add('theme-light');
+                    $('*').not('.no-dark').removeClass('inverted');
                     break;
             }
         }
@@ -54,10 +56,12 @@
         toggle.addEventListener('click', e => {
             if (toggle.checked) {
                 html.classList.add('theme-dark');
+                $('*').addClass('inverted');
                 html.classList.remove('theme-light');
                 localStorage.setItem('theme', 'dark');
             } else {
                 html.classList.remove('theme-dark');
+                $('*').not('.no-dark').removeClass('inverted');
                 html.classList.add('theme-light');
                 localStorage.setItem('theme', 'light');
             }
