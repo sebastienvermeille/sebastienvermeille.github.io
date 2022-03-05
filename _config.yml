@@ -7,7 +7,7 @@ favicon: 'assets/images/logo.png'
 url: "https://cookiecode.dev"
 
 # comment when publish to git
-baseurl: "/cookie"
+#baseurl: "/cookie"
 google_analytics: 'UA-91985102-2'
 disqus: 'cookiecode-dev'
 #mailchimp-list: 'https://wowthemes.us11.list-manage.com/subscribe/post?u=8aeb20a530e124561927d3bd8&amp;id=8c3d2d214b'
