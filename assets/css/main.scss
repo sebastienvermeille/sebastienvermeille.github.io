@@ -12,6 +12,8 @@
 @import "vendor/fomantic-ui/stylesheets/semantic-ui.scss";
 @import "syntax";
 @import "starsnonscss";
+@import "source-code-block";
+@import "premonition";
 
 
 $themes: (
@@ -33,6 +35,18 @@ $sub-themes: (
 						secondary: rgb(107, 73, 238),
 						text-on-gradient-color: white,
 						gradient: linear-gradient(to right, rgba(144, 30, 193, 1) 0%, rgb(107, 73, 238) 51%, rgba(144, 30, 193, 1) 100%)
+		),
+		git: (
+						primary: rgba(144, 30, 193, 1),
+						secondary: rgb(107, 73, 238),
+						text-on-gradient-color: white,
+						gradient: linear-gradient(to right, rgba(144, 30, 193, 1) 0%, rgb(107, 73, 238) 51%, rgba(144, 30, 193, 1) 100%)
+		),
+		concept: (
+						primary: rgba(144, 30, 193, 1),
+						secondary: rgb(107, 73, 238),
+						text-on-gradient-color: white,
+						gradient: linear-gradient(to right,#051937, #004d7a, #008793, #00bf72, #a8eb12)
 		),
 		docker: (
 						primary: rgba(144, 30, 193, 1),
@@ -227,7 +241,6 @@ footer {
 	transform: rotate(180deg);
 }
 
-
 /*======================
     404 page
 =======================*/
@@ -258,3 +271,7 @@ footer {
 	margin: 20px 0;
 	display: inline-block;}
 .contant_box_404{ margin-top:-50px;}
+
+.text-centered {
+	text-align:center;
+}

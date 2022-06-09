@@ -6,8 +6,7 @@ categories: [ spring, tutorial, reactive ]
 image: assets/images/articles/springboot-reactive.png
 subtheme: sub-theme-java
 ---
-This article will be completed later I wrote this to not forget
-## TODO
+I had issue to handle exceptions using webflux and found the solution in [this video](https://youtu.be/Lc3dHbQ-CFo?t=380).
 
 ## References
 * https://youtu.be/Lc3dHbQ-CFo?t=380

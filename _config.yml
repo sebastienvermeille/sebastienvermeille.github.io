@@ -40,8 +40,13 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-archives
+  - jemoji
+  - premonition
 
-gems: [emoji_for_jekyll]
+gems: []
+#emoji:
+# used to define a custom set of emojis
+#  src: "/assets/images/emoji"
 
 # Archives
 jekyll-archives:
@@ -62,6 +67,7 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
   syntax_highlighter_opts:
+    css_class: 'source-code'
     block:
       line_numbers: true
 
@@ -82,3 +88,10 @@ exclude: [changelog.md, LICENSE.txt, README.md, Gemfile, Gemfile.lock]
 sass:
   sass_dir: _sass
   style: compressed
+
+premonition:
+  types:
+    error:
+      fa-icon: "fa-bug"
+    question:
+      fa-icon: "fa-question"

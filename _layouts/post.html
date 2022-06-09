@@ -5,54 +5,66 @@ archive: false
 post_class: post-template
 ---
 
-<div class="ui segment" id="oss-sticky-left">
+<div class="ui segment">
     <div class="left ui rail" style=""></div>
     <div class="right ui rail"></div>
 
     <h1 class="gradient-text">{{ page.title }}</h1>
-    <p>
+    <p class="text-centered">
         {% if page.image %}
-
-        {% if site.lazyimages == "enabled" %}
-        <img class="featured-image img-fluid lazyimg" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAACCAQAAAA3fa6RAAAADklEQVR42mNkAANGCAUAACMAA2w/AMgAAAAASUVORK5CYII=" data-src="{% if page.image contains "://" %}{{ page.image }}{% else %}{{ site.baseurl }}/{{ page.image }}{% endif %}" alt="{{ page.title }}">
-        {% else %}
-        <img class="featured-image img-fluid" src="{% if page.image contains "://" %}{{ page.image }}{% else %}{{ site.baseurl }}/{{ page.image }}{% endif %}" alt="{{ page.title }}">
-        {% endif %}
-
+            {% if site.lazyimages == "enabled" %}
+            <img class="featured-image fluid lazyimg" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAACCAQAAAA3fa6RAAAADklEQVR42mNkAANGCAUAACMAA2w/AMgAAAAASUVORK5CYII=" data-src="{% if page.image contains "://" %}{{ page.image }}{% else %}{{ site.baseurl }}/{{ page.image }}{% endif %}" alt="{{ page.title }}">
+            {% else %}
+            <img class="featured-image fluid" src="{% if page.image contains "://" %}{{ page.image }}{% else %}{{ site.baseurl }}/{{ page.image }}{% endif %}" alt="{{ page.title }}">
+            {% endif %}
         {% endif %}
     </p>
+
     <p> {{ content }}</p>
         <!-- Post Date -->
     <p>
         <small>
-            <span class="post-date"><time class="post-date" datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date_to_string }}</time></span>
+            <span class="post-date">
+                <i class="fa-calendar icon"></i>
+                <time class="post-date" datetime="{{ page.date | date:"%Y-%m-%d" }}">Published: {{ page.date | timeago }}</time>
+            </span>
             {% if page.last_modified_at %}
             (Updated: <time datetime="{{ page.last_modified_at | date_to_xmlschema }}" itemprop="dateModified">{{ page.last_modified_at | date: "%b %-d, %Y" }}</time>)
             {% endif %}
         </small>
     </p>
     <!-- Post Categories -->
-    <div class="after-post-cats">
-        <ul class="tags mb-4">
-            {% assign sortedCategories = page.categories | sort %}
-            {% for category in sortedCategories %}
-            <li>
-                <a class="smoothscroll" href="{{site.baseurl}}/categories#{{ category | replace: " ","-" }}">{{ category }}</a>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
+<!--    <div class="after-post-cats">-->
+<!--        <ul class="tags mb-4">-->
+<!--            {% assign sortedCategories = page.categories | sort %}-->
+<!--            {% for category in sortedCategories %}-->
+<!--            <li>-->
+<!--                <a class="smoothscroll" href="{{site.baseurl}}/categories#{{ category | replace: " ","-" }}">{{ category }}</a>-->
+<!--            </li>-->
+<!--            {% endfor %}-->
+<!--        </ul>-->
+<!--    </div>-->
     <!-- End Categories -->
 
     <!-- Post Tags -->
     <div class="after-post-tags">
-        <ul class="tags">
-            {% assign sortedTags = page.tags | sort %}
+
+        {% assign sortedTags = page.tags | sort %}
             {% for tag in sortedTags %}
-            <li>
-                <a class="smoothscroll" href="{{site.baseurl}}/tags#{{ tag | replace: " ","-" }}">#{{ tag }}</a>
-            </li>
+<a class="ui tag label" href="{{site.baseurl}}/tags#{{ tag | replace: " ","-" }}">#{{ tag }}</a>
             {% endfor %}
+
+        <ul class="tags">
+<!--            {% assign sortedTags = page.tags | sort %}-->
+<!--            {% for tag in sortedTags %}-->
+
+
+
+
+<!--            <li>-->
+<!--                <a class="smoothscroll" href="{{site.baseurl}}/tags#{{ tag | replace: " ","-" }}">#{{ tag }}</a>-->
+<!--            </li>-->
+<!--            {% endfor %}-->
         </ul>
     </div>
     <!-- End Tags -->
@@ -69,7 +81,6 @@ post_class: post-template
     </div>
     <!-- End Categories -->
     <p></p>
-
     {% if page.comments == true %}
     <div id="comments" class="row mb-5">
         <div class="col-md-8">
