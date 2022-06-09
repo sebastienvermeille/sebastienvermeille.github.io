@@ -141,6 +141,8 @@ You can generate this code in a very few steps.
 
 
 ## Conclusion
+As usual for design pattern you can find my example implementation [here](https://github.com/sebastienvermeille/java-design-patterns/tree/main/step-builder).
+
 This pattern provide compile time issue when an object is not correctly constructed which is definitely a plus. 
 I like the fluent coding style which render the code much more intuitive. This is like some UX design for developers using your API.
 
