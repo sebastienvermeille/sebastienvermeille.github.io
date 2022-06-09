@@ -152,4 +152,4 @@ I see it as a quality when an API provide such way of using it. I was used to `M
 ## References
 * [IntelliJ plugin to generate StepBuilder](https://plugins.jetbrains.com/plugin/16792-stepbuilder-codegen).
 * [Svlada article](https://www.svlada.com/step-builder-pattern/)
-* [Martin Fowler - FluentInterface](https://martinfowler.com/bliki/FluentInterface.html/)
+* [Martin Fowler - FluentInterface](https://martinfowler.com/bliki/FluentInterface.html)
