@@ -8,7 +8,7 @@ image: assets/images/articles/nopic.png
 subtheme: sub-theme-git
 ---
 ## Introduction
-
+PATH=$PATH:~/.local/share/
 
 ## References
 * [Jetbrains youtrack ticket](https://youtrack.jetbrains.com/issue/IDEA-206235)
