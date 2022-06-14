@@ -30,3 +30,8 @@ s.parent().addClass("terminal space shadow");
 //
 //     .parent()
 // .prepend( "<p>Test</p>" );
+
+$("article  img").each(function() {
+  var s = $( this );
+  s.addClass("ui fluid image");
+});
