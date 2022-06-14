@@ -15,6 +15,7 @@ group :jekyll_plugins do
   gem 'rouge'
   gem 'jemoji'
   gem "premonition", "4.0.1"
+  gem 'jekyll_picture_tag', '~> 2.0'
 end
 gem "webrick", "~> 1.7"
 
