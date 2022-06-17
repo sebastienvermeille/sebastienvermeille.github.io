@@ -33,5 +33,7 @@ s.parent().addClass("terminal space shadow");
 
 $("article  img").each(function() {
   var s = $( this );
-  s.addClass("ui fluid image");
+  if(!s.hasClass("emoji")){
+    s.addClass("ui fluid image");
+  }
 });
