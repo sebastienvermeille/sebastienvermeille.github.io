@@ -1,14 +1,16 @@
 ---
 layout: default
+subtheme: sub-theme-simple-page
 title: Archive
 ---
 
 <!-- Begin List Posts
 ================================================== -->
+aaa
+<h1 class="ui gradient-text">Articles of category <span>{{ page.type }} '{{ page.title }}'</span></h1>
+
 <section class="recent-posts">
-<div class="section-title">
-    <h2>Archive of posts with <span>{{ page.type }} '{{ page.title }}'</span></h2>
-</div>
+
 <div class="row listrecent">
 
 {% for post in page.posts %}

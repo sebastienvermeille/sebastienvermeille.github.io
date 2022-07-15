@@ -6,6 +6,7 @@
         <link rel="icon" href="{{ site.baseurl }}/{{ site.logo }}">
         {% seo %}
         <link href="{{ site.baseurl }}/assets/css/main.css" rel="stylesheet">
+        <link href="{{ site.baseurl }}/assets/vendor/fontawesome/css/all.css" rel="stylesheet">
     </head>
 
     {% if jekyll.environment == 'production' %}
@@ -21,7 +22,10 @@
     {% endif %}
 
 {% capture layout %}{% if page.layout %}layout-{{ page.layout }}{% endif %}{% endcapture %}
-<body class="{{layout}} {{ page.subtheme }}">
+
+    {% assign subtheme = page.subtheme | default: 'sub-theme-simple-page' %}
+
+<body class="{{layout}} {{ subtheme }}">
 	<!-- defer loading of font and font awesome -->
 	<noscript id="deferred-styles">
 		<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
@@ -41,16 +45,23 @@
         <a href="{{ site.baseurl }}/oss/" class="item{% if splittedUrl[1] == 'oss' %} active{% endif %}">Open Source</a>
         <a href="{{ site.baseurl }}/about/" class="item{% if splittedUrl[1] == 'about' %} active{% endif %}">About me</a>
 
-        <label class="theme_changer">
-            <input theme_toggle type="checkbox">
+        <label class="theme_changer" style="display:none;">
+            <input theme_toggle type="checkbox" id="theme_toggle">
             <div class="button"></div>
         </label>
 
 <!--        {% include search-lunr.html %}-->
     </div>
 </header>
-
 <article class="ui main container">
+    <div class="ui icon right floated buttons" id="theme-switcher">
+        <button class="ui button" onclick="themeSwitch('light');">
+            <i class="fa-solid fa-sun"></i>
+        </button>
+        <button class="ui button" onclick="themeSwitch('dark');">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+    </div>
     <div class="ui text container">
         {{ content }}
     </div>
@@ -83,33 +94,39 @@
 ================================================== -->
 <footer class="footer">
     <div class="footer-top"></div>
-
-
             <div class="ui center aligned container no-dark">
                 <div class="ui stackable divided grid no-dark">
                     <div class="three wide column no-dark">
                         <h4 class="ui header">Languages</h4>
                         <div class="ui link list">
-                            <a href="#" class="item">JAVA</a>
-                            <a href="#" class="item">Python</a>
-                            <a href="#" class="item">PHP</a>
-                            <a href="#" class="item">Javascript / Typescript</a>
+                            <a href="/category/java" class="item">JAVA</a>
+                            <a href="/category/python" class="item">Python</a>
+                            <a href="/category/php" class="item">PHP</a>
+                            <a href="/category/jslang" class="item">Javascript / Typescript</a>
                         </div>
                     </div>
                     <div class="three wide column no-dark">
                         <h4 class="ui header">Tooling</h4>
                         <div class="ui link list">
-                            <a href="#" class="item">Jenkins</a>
-                            <a href="#" class="item">Docker</a>
+                            <a href="/category/ci-cd" class="item">CI/CD</a>
+                            <a href="/category/docker" class="item">Docker</a>
+                            <a href="/category/unraid" class="item">Unraid</a>
+                            <a href="/category/iot" class="item">IoT</a>
                         </div>
                     </div>
                     <div class="three wide column no-dark">
                         <h4 class="ui header">Concepts</h4>
                         <div class="ui link list">
                             <a href="#" class="item">Data modeling</a>
+                            <a href="/category/design-pattern" class="item">Design pattern</a>
+                            <a href="#" class="item">Recipes, Cookbook</a>
+                            <a href="#" class="item">Opinionated thoughts</a>
                         </div>
                     </div>
                     <div class="seven wide column no-dark">
+                        <div class="ui link list">
+                            <a href="/tags" class="item">Browse all tags</a>
+                        </div>
                         <h4 class="ui header no-dark">"Knowledge increases by sharing but not by saving."</h4>
                         <p class="no-dark">Source: (not me but I like it :) -> Internet..</p>
                     </div>

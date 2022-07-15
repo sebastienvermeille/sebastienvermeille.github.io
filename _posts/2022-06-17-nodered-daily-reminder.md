@@ -2,7 +2,8 @@
 layout: post
 title:  "[Howto] Create a voice reminder for daily meeting using NodeRed"
 author: sbeex
-categories: [ nodered, sonos, hue, scrum ]
+categories: [iot]
+tags: [ nodered, sonos, hue, scrum ]
 image: assets/images/articles/node-red-icon-2.svg
 subtheme: sub-theme-concept
 ---

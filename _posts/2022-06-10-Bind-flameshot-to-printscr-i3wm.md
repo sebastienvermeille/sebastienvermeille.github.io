@@ -2,8 +2,8 @@
 layout: post
 title:  "[Howto] Bind PrtScr key in i3wm with Falmeshot to take screenshots"
 author: sbeex
-categories: [ i3wm ]
-tags: [ linux, i3wm]
+categories: [ linux ]
+tags: [i3wm]
 image: assets/images/articles/flameshot-logo.png
 subtheme: sub-theme-git
 ---

@@ -2,8 +2,8 @@
 layout: post
 title:  "Gitignore.io - Generate your gitignore files in seconds!"
 author: sbeex
-categories: [ git ]
-tags: [ git, productivity]
+categories: [ tools ]
+tags: [ git ]
 image: assets/images/articles/gitignoreio.png
 subtheme: sub-theme-git
 ---

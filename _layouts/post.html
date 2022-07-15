@@ -50,7 +50,7 @@ post_class: post-template
 
         {% assign sortedTags = page.tags | sort %}
             {% for tag in sortedTags %}
-<a class="ui tag label" href="{{site.baseurl}}/tags#{{ tag | replace: " ","-" }}">#{{ tag }}</a>
+<a class="ui tag label" href="{{site.baseurl}}/tag/{{ tag | replace: " ","-" }}">#{{ tag }}</a>
             {% endfor %}
 
         <ul class="tags">

@@ -53,7 +53,7 @@
             }
         }
         setTheme();
-        toggle.addEventListener('click', e => {
+        toggle.addEventListener('change', e => {
             if (toggle.checked) {
                 html.classList.add('theme-dark');
                 $('*').addClass('inverted');
@@ -67,3 +67,25 @@
             }
         }, false);
     }, false);
+
+function themeSwitch(theme){
+    var checked = $("#theme_toggle").is(':checked');
+    const html = document.documentElement;
+    if(theme === 'dark' && !checked){
+        $( "#theme_toggle" ).prop( "checked", true ).trigger('change');
+
+        html.classList.add('theme-dark');
+        $('*').addClass('inverted');
+        html.classList.remove('theme-light');
+        localStorage.setItem('theme', 'dark');
+
+    }
+
+    if(theme === 'light' && checked){
+        $( "#theme_toggle" ).prop( "checked", false ).trigger('change');
+        html.classList.remove('theme-dark');
+        $('*').not('.no-dark').removeClass('inverted');
+        html.classList.add('theme-light');
+        localStorage.setItem('theme', 'light');
+    }
+}

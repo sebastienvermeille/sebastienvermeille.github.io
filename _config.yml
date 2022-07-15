@@ -11,7 +11,7 @@ url: "https://cookiecode.dev"
 google_analytics: 'UA-91985102-2'
 #mailchimp-list: 'https://wowthemes.us11.list-manage.com/subscribe/post?u=8aeb20a530e124561927d3bd8&amp;id=8c3d2d214b'
 include: ["_pages"]
-permalink: /:title/
+permalink: "/:categories/:title:output_ext"
 
 # Authors
 authors:
@@ -42,7 +42,15 @@ gems: []
 jekyll-archives:
   enabled:
     - categories
-  layout: archive
+    - tags
+    - year
+    - month
+  layouts:
+    year: year-archive
+    month: month-archive
+    day: day-archive
+    category: category-archive
+    tag: tag-archive
   permalinks:
     category: '/category/:name/'
 
@@ -85,3 +93,4 @@ premonition:
       fa-icon: "fa-bug"
     question:
       fa-icon: "fa-question"
+

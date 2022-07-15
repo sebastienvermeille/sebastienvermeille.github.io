@@ -2,7 +2,8 @@
 layout: post
 title:  "[Howto] Create your own app for UnRaid"
 author: sbeex
-categories: [ unraid, docker ]
+categories: [ unraid ]
+tags: [ docker ]
 image: assets/images/articles/unraid-your-app.png
 subtheme: sub-theme-concept
 ---

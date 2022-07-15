@@ -2,7 +2,8 @@
 layout: post
 title:  "[Howto] Convert a text to a speech audio file for free using TTSMP3"
 author: sbeex
-categories: [ tts, tool ]
+categories: [ tools ]
+tags: [ tts ]
 image: assets/images/articles/text-to-speech.png
 subtheme: sub-theme-concept
 ---

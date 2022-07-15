@@ -2,8 +2,8 @@
 layout: post
 title:  "Falmeshot - Do screenshots and annotate them in seconds !"
 author: sbeex
-categories: [ tool, productivity ]
-tags: [ linux, windows, mac, tool, productivity]
+categories: [ tools ]
+tags: [ linux, windows, mac, screenshot ]
 image: assets/images/articles/flameshot-logo.png
 subtheme: sub-theme-git
 ---
