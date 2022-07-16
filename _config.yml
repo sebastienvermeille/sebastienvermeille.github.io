@@ -44,16 +44,12 @@ jekyll-archives:
   enabled:
     - categories
     - tags
-    - year
-    - month
   layouts:
-    year: year-archive
-    month: month-archive
     day: day-archive
     category: category-archive
     tag: tag-archive
   permalinks:
-    category: '/category/:name/'
+    category: '/categories/:name/'
 
 # Pagination
 paginate: 6
