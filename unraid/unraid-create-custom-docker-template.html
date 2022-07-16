@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>[Howto] Create your own app for UnRaid | CookieCode</title>
+        <link rel="icon" href="/assets/images/logo.png">
+        <link href="/assets/css/main.css" rel="stylesheet">
+        <link href="/assets/vendors/fontawesome/css/all.css" rel="stylesheet">
+        <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[Howto] Create your own app for UnRaid | CookieCode</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="[Howto] Create your own app for UnRaid" />
+<meta name="author" content="sbeex" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Unraid provide an App store via its community app plugin:" />
+<meta property="og:description" content="Unraid provide an App store via its community app plugin:" />
+<link rel="canonical" href="https://cookiecode.dev/unraid/unraid-create-custom-docker-template.html" />
+<meta property="og:url" content="https://cookiecode.dev/unraid/unraid-create-custom-docker-template.html" />
+<meta property="og:site_name" content="CookieCode" />
+<meta property="og:image" content="https://cookiecode.dev/assets/images/articles/unraid-your-app.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-06-14T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://cookiecode.dev/assets/images/articles/unraid-your-app.png" />
+<meta property="twitter:title" content="[Howto] Create your own app for UnRaid" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"sbeex"},"dateModified":"2022-06-14T00:00:00+00:00","datePublished":"2022-06-14T00:00:00+00:00","description":"Unraid provide an App store via its community app plugin:","headline":"[Howto] Create your own app for UnRaid","image":"https://cookiecode.dev/assets/images/articles/unraid-your-app.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://cookiecode.dev/unraid/unraid-create-custom-docker-template.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://cookiecode.dev/assets/images/logo.png"},"name":"sbeex"},"url":"https://cookiecode.dev/unraid/unraid-create-custom-docker-template.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    </head>
+
+    
+    <!-- change your GA id in _config.yml -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-91985102-2', 'auto');
+    ga('send', 'pageview');
+    </script>
+    
+
+
+
+    
+
+<body class="layout-post sub-theme-concept">
+	<!-- defer loading of font and font awesome -->
+	<noscript id="deferred-styles">
+		<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+	</noscript>
+
+
+<!--HEADER MENU -->
+<header class="ui fixed menu gradient-bg">
+    <div class="ui container">
+
+        
+        <a href="/" class="header item">
+            <img class="logo" src="/assets/images/logo.png" alt="CookieCode">
+            CookieCode
+        </a>
+        <a href="/index.html" class="item">Blog</a>
+        <a href="/oss/" class="item">Open Source</a>
+        <a href="/about/" class="item">About me</a>
+
+        <label class="theme_changer" style="display:none;">
+            <input theme_toggle type="checkbox" id="theme_toggle">
+            <div class="button"></div>
+        </label>
+
+<!--        <script src="/assets/js/lunr.js"></script>
+
+
+<style>
+    .lunrsearchresult .title {color: #d9230f;}
+    .lunrsearchresult .url {color: silver;}
+    .lunrsearchresult a {display: block; color: #777;}
+    .lunrsearchresult a:hover, .lunrsearchresult a:focus {text-decoration: none;}
+    .lunrsearchresult a:hover .title {text-decoration: underline;}
+</style>
+
+
+<form class="bd-search" onSubmit="return lunr_search(document.getElementById('lunrsearch').value);">
+    <input type="text" class="form-control text-small launch-modal-search" id="lunrsearch" name="q" maxlength="255" value="" placeholder="Type and enter..."/>
+</form>
+
+<div id="lunrsearchresults">
+    <ul></ul>
+</div>
+
+<script src="/assets/js/lunrsearchengine.js"></script>-->
+    </div>
+</header>
+<article class="ui main container">
+    <div class="ui icon right floated buttons" id="theme-switcher">
+        <button class="ui button" onclick="themeSwitch('light');">
+            <i class="fa-solid fa-sun"></i>
+        </button>
+        <button class="ui button" onclick="themeSwitch('dark');">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+    </div>
+    <div class="ui text container">
+        <div class="ui segment">
+    <div class="left ui rail" style=""></div>
+    <div class="right ui rail"></div>
+
+    <h1 class="gradient-text">[Howto] Create your own app for UnRaid</h1>
+    <p class="text-centered">
+        
+            
+            <img class="featured-image fluid" src="/assets/images/articles/unraid-your-app.png" alt="[Howto] Create your own app for UnRaid">
+            
+        
+    </p>
+
+    <p> <p>Unraid provide an App store via its <a href="https://forums.unraid.net/topic/38582-plug-in-community-applications/">community app plugin</a>:</p>
+
+<p><img src="../assets/images/articles/unraid-community-app-plugin.png" alt="Going step by step" /></p>
+
+<p>With this it becomes really easy for everyone to install any app on Unraid: Just click install and voila your Unraid server is up and running.</p>
+
+<p>What about publishing your own app there ? Wouldn’t it be a great way to let it get adopted by the whole unraid community ?</p>
+
+<p>If you ask me I will tell you: <strong>Yes definitely!</strong></p>
+
+<p>Furthermore this is totally free and very easy compared to some other ecosystems.</p>
+
+<p>Let’s have a look about that!</p>
+
+<h2 id="create-your-own-app-store">Create your own app store</h2>
+
+<p>I created mine here if you are interested in the end results feel free to have a look: <a href="https://github.com/sebastienvermeille/unraid-docker-templates">https://github.com/sebastienvermeille/unraid-docker-templates</a></p>
+
+<p>Let’s see how it works:</p>
+
+<p>1) First you have to create a public git repository (on github or whatever)
+2) Then inside of it we will declare some templates for our docker applications.</p>
+
+<p>Here is the template I have created for <code class="language-plaintext highlighter-rouge">sonos2mqtt</code> app:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="source-code"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+</pre></td><td class="rouge-code"><pre>sonos2mqtt.xml
+
+<span class="cp">&lt;?xml version="1.0"?&gt;</span>
+<span class="nt">&lt;Container</span> <span class="na">version=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;Name&gt;</span>sonos2mqtt<span class="nt">&lt;/Name&gt;</span>
+    <span class="nt">&lt;Registry&gt;</span>https://hub.docker.com/r/svrooij/<span class="nt">&lt;/Registry&gt;</span>
+    <span class="nt">&lt;Repository&gt;</span>svrooij/sonos2mqtt<span class="nt">&lt;/Repository&gt;</span>
+    <span class="nt">&lt;Github&gt;</span>https://github.com/svrooij/sonos2mqtt<span class="nt">&lt;/Github&gt;</span>
+    <span class="nt">&lt;Network&gt;</span>bridge<span class="nt">&lt;/Network&gt;</span>
+    <span class="nt">&lt;MyIP/&gt;</span>
+    <span class="nt">&lt;Privileged&gt;</span>false<span class="nt">&lt;/Privileged&gt;</span>
+    <span class="nt">&lt;Support&gt;</span>https://svrooij.github.io/sonos2mqtt<span class="nt">&lt;/Support&gt;</span>
+    <span class="nt">&lt;Project/&gt;</span>
+    <span class="nt">&lt;Overview&gt;</span>
+        Bridge between Sonos and mqtt server
+        Provide features like notifications or text-to-speech, publish sonos status to mqtt and so on.
+    <span class="nt">&lt;/Overview&gt;</span>
+    <span class="nt">&lt;Category&gt;</span>HomeAutomation:<span class="nt">&lt;/Category&gt;</span>
+    <span class="nt">&lt;WebUI&gt;</span>http://[IP]:[PORT:8080]/status<span class="nt">&lt;/WebUI&gt;</span>
+    <span class="nt">&lt;TemplateURL/&gt;</span>
+    <span class="nt">&lt;Icon&gt;</span>https://raw.githubusercontent.com/sebastienvermeille/unraid-docker-templates/main/images/mqtt2sonos_icon.png<span class="nt">&lt;/Icon&gt;</span>
+    <span class="nt">&lt;ExtraParams/&gt;</span>
+    <span class="nt">&lt;PostArgs/&gt;</span>
+    <span class="nt">&lt;DateInstalled&gt;</span>1527397055<span class="nt">&lt;/DateInstalled&gt;</span>
+    <span class="nt">&lt;DonateText/&gt;</span>
+    <span class="nt">&lt;DonateLink/&gt;</span>
+    <span class="nt">&lt;DonateImg/&gt;</span>
+    <span class="nt">&lt;MinVer/&gt;</span>
+    <span class="nt">&lt;Description&gt;</span>It is very important to set the `Ip of this docker (sonos listener host)` field correctly otherwise the web
+        ui won't work. (You can run this container without then grab the ip edit and set it)<span class="nt">&lt;/Description&gt;</span>
+    <span class="nt">&lt;Networking&gt;</span>
+        <span class="nt">&lt;Mode&gt;</span>bridge<span class="nt">&lt;/Mode&gt;</span>
+        <span class="nt">&lt;Publish&gt;</span>
+            <span class="nt">&lt;Port&gt;</span>
+                <span class="nt">&lt;HostPort&gt;</span>6329<span class="nt">&lt;/HostPort&gt;</span>
+                <span class="nt">&lt;ContainerPort&gt;</span>6329<span class="nt">&lt;/ContainerPort&gt;</span>
+                <span class="nt">&lt;Protocol&gt;</span>tcp<span class="nt">&lt;/Protocol&gt;</span>
+            <span class="nt">&lt;/Port&gt;</span>
+        <span class="nt">&lt;/Publish&gt;</span>
+    <span class="nt">&lt;/Networking&gt;</span>
+    <span class="nt">&lt;Data&gt;</span>
+        <span class="nt">&lt;Volume&gt;</span>
+            <span class="nt">&lt;HostDir&gt;</span>/mnt/user/appdata/sonos2mqtt<span class="nt">&lt;/HostDir&gt;</span>
+            <span class="nt">&lt;ContainerDir&gt;</span>/data<span class="nt">&lt;/ContainerDir&gt;</span>
+            <span class="nt">&lt;Mode&gt;</span>rw<span class="nt">&lt;/Mode&gt;</span>
+        <span class="nt">&lt;/Volume&gt;</span>
+    <span class="nt">&lt;/Data&gt;</span>
+    <span class="nt">&lt;Environment/&gt;</span>
+    <span class="nt">&lt;Labels/&gt;</span>
+    <span class="nt">&lt;Config</span> <span class="na">Name=</span><span class="s">"Host Port"</span> <span class="na">Target=</span><span class="s">"6329"</span> <span class="na">Default=</span><span class="s">"6329"</span> <span class="na">Mode=</span><span class="s">"tcp"</span> <span class="na">Description=</span><span class="s">"Container Port: 6329"</span> <span class="na">Type=</span><span class="s">"Port"</span> <span class="na">Display=</span><span class="s">"always"</span>
+            <span class="na">Required=</span><span class="s">"true"</span> <span class="na">Mask=</span><span class="s">"false"</span><span class="nt">&gt;</span>6329<span class="nt">&lt;/Config&gt;</span>
+    <span class="nt">&lt;Config</span> <span class="na">Name=</span><span class="s">"IP of one known sonos speaker"</span> <span class="na">Target=</span><span class="s">"SONOS2MQTT_DEVICE"</span> <span class="na">Default=</span><span class="s">""</span>
+            <span class="na">Description=</span><span class="s">"(device discovery doesnt always work inside docker)"</span> <span class="na">Type=</span><span class="s">"Variable"</span> <span class="na">Display=</span><span class="s">"always"</span> <span class="na">Required=</span><span class="s">"true"</span>
+            <span class="na">Mask=</span><span class="s">"false"</span><span class="nt">&gt;&lt;/Config&gt;</span>
+    <span class="nt">&lt;Config</span> <span class="na">Name=</span><span class="s">"Mqtt connection string"</span> <span class="na">Target=</span><span class="s">"SONOS2MQTT_MQTT"</span> <span class="na">Default=</span><span class="s">""</span>
+            <span class="na">Description=</span><span class="s">"mqtt(s)://[user]:[password]@[host]:[port]"</span> <span class="na">Type=</span><span class="s">"Variable"</span> <span class="na">Display=</span><span class="s">"always"</span> <span class="na">Required=</span><span class="s">"true"</span>
+            <span class="na">Mask=</span><span class="s">"false"</span><span class="nt">&gt;&lt;/Config&gt;</span>
+    <span class="nt">&lt;Config</span> <span class="na">Name=</span><span class="s">"Publish distinct (optional)"</span> <span class="na">Target=</span><span class="s">"SONOS2MQTT_DISTINCT"</span> <span class="na">Default=</span><span class="s">"true"</span>
+            <span class="na">Description=</span><span class="s">"Publish distinct or not"</span> <span class="na">Type=</span><span class="s">"Variable"</span> <span class="na">Display=</span><span class="s">"advanced"</span> <span class="na">Required=</span><span class="s">"false"</span>
+            <span class="na">Mask=</span><span class="s">"false"</span><span class="nt">&gt;</span>true<span class="nt">&lt;/Config&gt;</span>
+    <span class="nt">&lt;Config</span> <span class="na">Name=</span><span class="s">"Ip of this docker (sonos listener host)"</span> <span class="na">Target=</span><span class="s">"SONOS_LISTENER_HOST"</span> <span class="na">Default=</span><span class="s">""</span>
+            <span class="na">Description=</span><span class="s">""</span> <span class="na">Type=</span><span class="s">"Variable"</span> <span class="na">Display=</span><span class="s">"always"</span> <span class="na">Required=</span><span class="s">"true"</span>
+            <span class="na">Mask=</span><span class="s">"false"</span><span class="nt">&gt;&lt;/Config&gt;</span>
+    <span class="nt">&lt;Config</span> <span class="na">Name=</span><span class="s">"AppData Config Path"</span> <span class="na">Target=</span><span class="s">"/config"</span> <span class="na">Default=</span><span class="s">"/mnt/user/appdata/sonos2mqtt"</span> <span class="na">Mode=</span><span class="s">"rw"</span>
+            <span class="na">Description=</span><span class="s">"Container Path: /config"</span>
+            <span class="na">Type=</span><span class="s">"Path"</span> <span class="na">Display=</span><span class="s">"advanced-hide"</span> <span class="na">Required=</span><span class="s">"true"</span> <span class="na">Mask=</span><span class="s">"false"</span><span class="nt">&gt;</span>/mnt/user/appdata/sonos2mqtt<span class="nt">&lt;/Config&gt;</span>
+    <span class="nt">&lt;Config</span> <span class="na">Name=</span><span class="s">"Text to speech endpoint url (optional)"</span> <span class="na">Target=</span><span class="s">"SONOS_TTS_ENDPOINT"</span> <span class="na">Default=</span><span class="s">""</span>
+            <span class="na">Description=</span><span class="s">""</span> <span class="na">Type=</span><span class="s">"Variable"</span> <span class="na">Display=</span><span class="s">"always"</span> <span class="na">Required=</span><span class="s">"false"</span>
+            <span class="na">Mask=</span><span class="s">"false"</span><span class="nt">&gt;&lt;/Config&gt;</span>
+    <span class="nt">&lt;Config</span> <span class="na">Name=</span><span class="s">"Text to speech language (optional)"</span> <span class="na">Target=</span><span class="s">"SONOS_TTS_LANG"</span> <span class="na">Default=</span><span class="s">"en-US"</span>
+            <span class="na">Description=</span><span class="s">""</span> <span class="na">Type=</span><span class="s">"Variable"</span> <span class="na">Display=</span><span class="s">"always"</span> <span class="na">Required=</span><span class="s">"false"</span>
+            <span class="na">Mask=</span><span class="s">"false"</span><span class="nt">&gt;&lt;/Config&gt;</span>
+<span class="nt">&lt;/Container&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>As you can see it’s just a simple xml file declaring a bit ports, environment variables, paths and so on.</p>
+
+<p>You can define here multiple type of configurations:</p>
+<ul>
+  <li>Variable: ENV variable name</li>
+  <li>Port: A port mapping</li>
+  <li>Path: A path exposed</li>
+</ul>
+
+<p>For more details you can read this page of <a href="https://wiki.unraid.net/DockerTemplateSchema">unraid’s wiki</a> it’s very good documented.</p>
+
+<p>3) Then we have to tell unraid to fetch our templates
+To do so you simply go to your unraid instance and select the <code class="language-plaintext highlighter-rouge">Docker</code> tab.</p>
+
+<p><img src="../assets/images/articles/unraid-select-docker.png" alt="" /></p>
+
+<p>Then on the bottom of the page add the url of the git repository you have created at step 1):</p>
+
+<p><img src="../assets/images/articles/unraid-custom-template-repository.png" alt="" /></p>
+
+<p>And click <code class="language-plaintext highlighter-rouge">SAVE</code>.</p>
+
+<p>4) Now you can create a docker container with your template:</p>
+
+<p>Click on <img src="../assets/images/articles/unraid-add-container-button.png" alt="" /> and then select your own template:</p>
+
+<p><img src="../assets/images/articles/unraid-select-custom-template.png" alt="" /></p>
+
+<p>And then all the configuration you defined in the xml file will be rendered as follow:</p>
+
+<p><img src="../assets/images/articles/unraid-display-custom-template.png" alt="" /></p>
+
+<p>As you can see we can define custom values, optional values, masked values for password etc. it is really powerful thank’s Unraid Devs!</p>
+
+<h2 id="integrate-your-docker-template-repository-with-the-community-apps-plugin">Integrate your docker template repository with the community apps plugin</h2>
+
+<p>TODO</p>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://wiki.unraid.net/DockerTemplateSchema">Docker template schema</a></li>
+  <li><a href="https://forums.unraid.net/topic/57181-docker-faq/#comment-566084">Docker FAQ - Host app on community applications plugin</a>.</li>
+</ul>
+</p>
+        <!-- Post Date -->
+    <p>
+        <small>
+            <span class="post-date">
+                <i class="fa-calendar icon"></i>
+                <time class="post-date" datetime="2022-06-14">Published: 1 month and 2 days ago</time>
+            </span>
+            
+        </small>
+    </p>
+    <!-- Post Categories -->
+<!--    <div class="after-post-cats">-->
+<!--        <ul class="tags mb-4">-->
+<!--            -->
+<!--            -->
+<!--            <li>-->
+<!--                <a class="smoothscroll" href="/categories#unraid">unraid</a>-->
+<!--            </li>-->
+<!--            -->
+<!--        </ul>-->
+<!--    </div>-->
+    <!-- End Categories -->
+
+    <!-- Post Tags -->
+    <div class="after-post-tags">
+
+        
+            
+<a class="ui tag label" href="/tag/docker">#docker</a>
+            
+
+        <ul class="tags">
+<!--            -->
+<!--            -->
+
+
+
+
+<!--            <li>-->
+<!--                <a class="smoothscroll" href="/tags#docker">#docker</a>-->
+<!--            </li>-->
+<!--            -->
+        </ul>
+    </div>
+    <!-- End Tags -->
+
+    <!-- Prev/Next -->
+    <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+        
+        <a class="prev d-block col-md-6" href="//tools/linux-screenshots-flameshot.html"> &laquo; Falmeshot - Do screenshots and annotate them in seconds !</a>
+        
+        
+        <a class="next d-block col-md-6 text-lg-right" href="//tools/ttsmp3-free-online-text-to-speech.html">[Howto] Convert a text to a speech audio file for free using TTSMP3 &raquo; </a>
+        
+        <div class="clearfix"></div>
+    </div>
+    <!-- End Categories -->
+    <p></p>
+    <div id="comments" class="row mb-5">
+        <div class="col-md-8">
+            <section class="disqus">
+
+    <div id="disqus_thread"></div>
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+        /*
+        var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        */
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            var disqus_shortname = '';
+            s.src = 'https://cookiecode-dev.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+        </div>
+    </div>
+</div>
+
+
+<!--&lt;!&ndash; Begin Article-->
+<!--================================================== &ndash;&gt;-->
+<!--<div class="container">-->
+<!--    <div class="row">-->
+
+<!--        &lt;!&ndash; Post Share &ndash;&gt;-->
+<!--        <div class="col-md-2 pl-0">-->
+<!--            <div class="share sticky-top sticky-top-offset">
+    <p>
+        Share
+    </p>
+    <ul>
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://twitter.com/intent/tweet?text=[Howto] Create your own app for UnRaid&url=https://cookiecode.dev/unraid/unraid-create-custom-docker-template.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://facebook.com/sharer.php?u=https://cookiecode.dev/unraid/unraid-create-custom-docker-template.html" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://cookiecode.dev/unraid/unraid-create-custom-docker-template.html" onclick="window.open(this.href, 'width=550,height=435');return false;">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </li>
+
+    </ul>
+    
+    <div class="sep">
+    </div>
+    <ul>
+        <li>
+        <a class="small smoothscroll" href="#disqus_thread"></a>
+        </li>
+    </ul>
+    
+</div>
+-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Post &ndash;&gt;-->
+<!--        -->
+
+<!--        <div class="col-md-9 flex-first flex-md-unordered">-->
+<!--            <div class="mainheading">-->
+
+<!--                &lt;!&ndash; Author Box &ndash;&gt;-->
+<!--                -->
+<!--                <div class="row post-top-meta">-->
+<!--                    <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0">-->
+<!--                        -->
+<!--                        <img class="author-thumb" src="https://www.gravatar.com/avatar/db2e260f57e40ade7907bc303a295b70?s=250&d=mm&r=x" alt="sbeex">-->
+<!--                        -->
+<!--                    </div>-->
+<!--                    <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left">-->
+<!--                        <a target="_blank" class="link-dark" href="https://cookiecode.dev/">sbeex</a><a target="_blank" href="" class="btn follow">Follow</a>-->
+<!--                        <span class="author-description">Author of CookieCode, Clean Code principles supporter.</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                -->
+
+<!--                &lt;!&ndash; Post Title &ndash;&gt;-->
+<!--                <h1 class="posttitle gradient-text">[Howto] Create your own app for UnRaid</h1>-->
+
+<!--            </div>-->
+
+<!--            &lt;!&ndash; Adsense if enabled from _config.yml (change your pub id and slot) &ndash;&gt;-->
+<!--            -->
+<!--            &lt;!&ndash; End Adsense &ndash;&gt;-->
+
+<!--            &lt;!&ndash; Post Featured Image &ndash;&gt;-->
+<!--            -->
+
+<!--            -->
+<!--            <img class="featured-image img-fluid" src="/assets/images/articles/unraid-your-app.png" alt="[Howto] Create your own app for UnRaid">-->
+<!--            -->
+
+<!--            -->
+<!--            &lt;!&ndash; End Featured Image &ndash;&gt;-->
+
+<!--            &lt;!&ndash; Post Content &ndash;&gt;-->
+<!--            <div class="article-post">-->
+<!--                &lt;!&ndash; Toc if any &ndash;&gt;-->
+<!--                -->
+<!--                &lt;!&ndash; End Toc &ndash;&gt;-->
+<!--                <p>Unraid provide an App store via its <a href="https://forums.unraid.net/topic/38582-plug-in-community-applications/">community app plugin</a>:</p>
+
+<p><img src="../assets/images/articles/unraid-community-app-plugin.png" alt="Going step by step" /></p>
+
+<p>With this it becomes really easy for everyone to install any app on Unraid: Just click install and voila your Unraid server is up and running.</p>
+
+<p>What about publishing your own app there ? Wouldn’t it be a great way to let it get adopted by the whole unraid community ?</p>
+
+<p>If you ask me I will tell you: <strong>Yes definitely!</strong></p>
+
+<p>Furthermore this is totally free and very easy compared to some other ecosystems.</p>
+
+<p>Let’s have a look about that!</p>
+
+<h2 id="create-your-own-app-store">Create your own app store</h2>
+
+<p>I created mine here if you are interested in the end results feel free to have a look: <a href="https://github.com/sebastienvermeille/unraid-docker-templates">https://github.com/sebastienvermeille/unraid-docker-templates</a></p>
+
+<p>Let’s see how it works:</p>
+
+<p>1) First you have to create a public git repository (on github or whatever)
+2) Then inside of it we will declare some templates for our docker applications.</p>
+
+<p>Here is the template I have created for <code class="language-plaintext highlighter-rouge">sonos2mqtt</code> app:</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="source-code"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+</pre></td><td class="rouge-code"><pre>sonos2mqtt.xml
+
+<span class="cp">&lt;?xml version="1.0"?&gt;</span>
+<span class="nt">&lt;Container</span> <span class="na">version=</span><span class="s">"2"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;Name&gt;</span>sonos2mqtt<span class="nt">&lt;/Name&gt;</span>
+    <span class="nt">&lt;Registry&gt;</span>https://hub.docker.com/r/svrooij/<span class="nt">&lt;/Registry&gt;</span>
+    <span class="nt">&lt;Repository&gt;</span>svrooij/sonos2mqtt<span class="nt">&lt;/Repository&gt;</span>
+    <span class="nt">&lt;Github&gt;</span>https://github.com/svrooij/sonos2mqtt<span class="nt">&lt;/Github&gt;</span>
+    <span class="nt">&lt;Network&gt;</span>bridge<span class="nt">&lt;/Network&gt;</span>
+    <span class="nt">&lt;MyIP/&gt;</span>
+    <span class="nt">&lt;Privileged&gt;</span>false<span class="nt">&lt;/Privileged&gt;</span>
+    <span class="nt">&lt;Support&gt;</span>https://svrooij.github.io/sonos2mqtt<span class="nt">&lt;/Support&gt;</span>
+    <span class="nt">&lt;Project/&gt;</span>
+    <span class="nt">&lt;Overview&gt;</span>
+        Bridge between Sonos and mqtt server
+        Provide features like notifications or text-to-speech, publish sonos status to mqtt and so on.
+    <span class="nt">&lt;/Overview&gt;</span>
+    <span class="nt">&lt;Category&gt;</span>HomeAutomation:<span class="nt">&lt;/Category&gt;</span>
+    <span class="nt">&lt;WebUI&gt;</span>http://[IP]:[PORT:8080]/status<span class="nt">&lt;/WebUI&gt;</span>
+    <span class="nt">&lt;TemplateURL/&gt;</span>
+    <span class="nt">&lt;Icon&gt;</span>https://raw.githubusercontent.com/sebastienvermeille/unraid-docker-templates/main/images/mqtt2sonos_icon.png<span class="nt">&lt;/Icon&gt;</span>
+    <span class="nt">&lt;ExtraParams/&gt;</span>
+    <span class="nt">&lt;PostArgs/&gt;</span>
+    <span class="nt">&lt;DateInstalled&gt;</span>1527397055<span class="nt">&lt;/DateInstalled&gt;</span>
+    <span class="nt">&lt;DonateText/&gt;</span>
+    <span class="nt">&lt;DonateLink/&gt;</span>
+    <span class="nt">&lt;DonateImg/&gt;</span>
+    <span class="nt">&lt;MinVer/&gt;</span>
+    <span class="nt">&lt;Description&gt;</span>It is very important to set the `Ip of this docker (sonos listener host)` field correctly otherwise the web
+        ui won't work. (You can run this container without then grab the ip edit and set it)<span class="nt">&lt;/Description&gt;</span>
+    <span class="nt">&lt;Networking&gt;</span>
+        <span class="nt">&lt;Mode&gt;</span>bridge<span class="nt">&lt;/Mode&gt;</span>
+        <span class="nt">&lt;Publish&gt;</span>
+            <span class="nt">&lt;Port&gt;</span>
+                <span class="nt">&lt;HostPort&gt;</span>6329<span class="nt">&lt;/HostPort&gt;</span>
+                <span class="nt">&lt;ContainerPort&gt;</span>6329<span class="nt">&lt;/ContainerPort&gt;</span>
+                <span class="nt">&lt;Protocol&gt;</span>tcp<span class="nt">&lt;/Protocol&gt;</span>
+            <span class="nt">&lt;/Port&gt;</span>
+        <span class="nt">&lt;/Publish&gt;</span>
+    <span class="nt">&lt;/Networking&gt;</span>
+    <span class="nt">&lt;Data&gt;</span>
+        <span class="nt">&lt;Volume&gt;</span>
+            <span class="nt">&lt;HostDir&gt;</span>/mnt/user/appdata/sonos2mqtt<span class="nt">&lt;/HostDir&gt;</span>
+            <span class="nt">&lt;ContainerDir&gt;</span>/data<span class="nt">&lt;/ContainerDir&gt;</span>
+            <span class="nt">&lt;Mode&gt;</span>rw<span class="nt">&lt;/Mode&gt;</span>
+        <span class="nt">&lt;/Volume&gt;</span>
+    <span class="nt">&lt;/Data&gt;</span>
+    <span class="nt">&lt;Environment/&gt;</span>
+    <span class="nt">&lt;Labels/&gt;</span>
+    <span class="nt">&lt;Config</span> <span class="na">Name=</span><span class="s">"Host Port"</span> <span class="na">Target=</span><span class="s">"6329"</span> <span class="na">Default=</span><span class="s">"6329"</span> <span class="na">Mode=</span><span class="s">"tcp"</span> <span class="na">Description=</span><span class="s">"Container Port: 6329"</span> <span class="na">Type=</span><span class="s">"Port"</span> <span class="na">Display=</span><span class="s">"always"</span>
+            <span class="na">Required=</span><span class="s">"true"</span> <span class="na">Mask=</span><span class="s">"false"</span><span class="nt">&gt;</span>6329<span class="nt">&lt;/Config&gt;</span>
+    <span class="nt">&lt;Config</span> <span class="na">Name=</span><span class="s">"IP of one known sonos speaker"</span> <span class="na">Target=</span><span class="s">"SONOS2MQTT_DEVICE"</span> <span class="na">Default=</span><span class="s">""</span>
+            <span class="na">Description=</span><span class="s">"(device discovery doesnt always work inside docker)"</span> <span class="na">Type=</span><span class="s">"Variable"</span> <span class="na">Display=</span><span class="s">"always"</span> <span class="na">Required=</span><span class="s">"true"</span>
+            <span class="na">Mask=</span><span class="s">"false"</span><span class="nt">&gt;&lt;/Config&gt;</span>
+    <span class="nt">&lt;Config</span> <span class="na">Name=</span><span class="s">"Mqtt connection string"</span> <span class="na">Target=</span><span class="s">"SONOS2MQTT_MQTT"</span> <span class="na">Default=</span><span class="s">""</span>
+            <span class="na">Description=</span><span class="s">"mqtt(s)://[user]:[password]@[host]:[port]"</span> <span class="na">Type=</span><span class="s">"Variable"</span> <span class="na">Display=</span><span class="s">"always"</span> <span class="na">Required=</span><span class="s">"true"</span>
+            <span class="na">Mask=</span><span class="s">"false"</span><span class="nt">&gt;&lt;/Config&gt;</span>
+    <span class="nt">&lt;Config</span> <span class="na">Name=</span><span class="s">"Publish distinct (optional)"</span> <span class="na">Target=</span><span class="s">"SONOS2MQTT_DISTINCT"</span> <span class="na">Default=</span><span class="s">"true"</span>
+            <span class="na">Description=</span><span class="s">"Publish distinct or not"</span> <span class="na">Type=</span><span class="s">"Variable"</span> <span class="na">Display=</span><span class="s">"advanced"</span> <span class="na">Required=</span><span class="s">"false"</span>
+            <span class="na">Mask=</span><span class="s">"false"</span><span class="nt">&gt;</span>true<span class="nt">&lt;/Config&gt;</span>
+    <span class="nt">&lt;Config</span> <span class="na">Name=</span><span class="s">"Ip of this docker (sonos listener host)"</span> <span class="na">Target=</span><span class="s">"SONOS_LISTENER_HOST"</span> <span class="na">Default=</span><span class="s">""</span>
+            <span class="na">Description=</span><span class="s">""</span> <span class="na">Type=</span><span class="s">"Variable"</span> <span class="na">Display=</span><span class="s">"always"</span> <span class="na">Required=</span><span class="s">"true"</span>
+            <span class="na">Mask=</span><span class="s">"false"</span><span class="nt">&gt;&lt;/Config&gt;</span>
+    <span class="nt">&lt;Config</span> <span class="na">Name=</span><span class="s">"AppData Config Path"</span> <span class="na">Target=</span><span class="s">"/config"</span> <span class="na">Default=</span><span class="s">"/mnt/user/appdata/sonos2mqtt"</span> <span class="na">Mode=</span><span class="s">"rw"</span>
+            <span class="na">Description=</span><span class="s">"Container Path: /config"</span>
+            <span class="na">Type=</span><span class="s">"Path"</span> <span class="na">Display=</span><span class="s">"advanced-hide"</span> <span class="na">Required=</span><span class="s">"true"</span> <span class="na">Mask=</span><span class="s">"false"</span><span class="nt">&gt;</span>/mnt/user/appdata/sonos2mqtt<span class="nt">&lt;/Config&gt;</span>
+    <span class="nt">&lt;Config</span> <span class="na">Name=</span><span class="s">"Text to speech endpoint url (optional)"</span> <span class="na">Target=</span><span class="s">"SONOS_TTS_ENDPOINT"</span> <span class="na">Default=</span><span class="s">""</span>
+            <span class="na">Description=</span><span class="s">""</span> <span class="na">Type=</span><span class="s">"Variable"</span> <span class="na">Display=</span><span class="s">"always"</span> <span class="na">Required=</span><span class="s">"false"</span>
+            <span class="na">Mask=</span><span class="s">"false"</span><span class="nt">&gt;&lt;/Config&gt;</span>
+    <span class="nt">&lt;Config</span> <span class="na">Name=</span><span class="s">"Text to speech language (optional)"</span> <span class="na">Target=</span><span class="s">"SONOS_TTS_LANG"</span> <span class="na">Default=</span><span class="s">"en-US"</span>
+            <span class="na">Description=</span><span class="s">""</span> <span class="na">Type=</span><span class="s">"Variable"</span> <span class="na">Display=</span><span class="s">"always"</span> <span class="na">Required=</span><span class="s">"false"</span>
+            <span class="na">Mask=</span><span class="s">"false"</span><span class="nt">&gt;&lt;/Config&gt;</span>
+<span class="nt">&lt;/Container&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>As you can see it’s just a simple xml file declaring a bit ports, environment variables, paths and so on.</p>
+
+<p>You can define here multiple type of configurations:</p>
+<ul>
+  <li>Variable: ENV variable name</li>
+  <li>Port: A port mapping</li>
+  <li>Path: A path exposed</li>
+</ul>
+
+<p>For more details you can read this page of <a href="https://wiki.unraid.net/DockerTemplateSchema">unraid’s wiki</a> it’s very good documented.</p>
+
+<p>3) Then we have to tell unraid to fetch our templates
+To do so you simply go to your unraid instance and select the <code class="language-plaintext highlighter-rouge">Docker</code> tab.</p>
+
+<p><img src="../assets/images/articles/unraid-select-docker.png" alt="" /></p>
+
+<p>Then on the bottom of the page add the url of the git repository you have created at step 1):</p>
+
+<p><img src="../assets/images/articles/unraid-custom-template-repository.png" alt="" /></p>
+
+<p>And click <code class="language-plaintext highlighter-rouge">SAVE</code>.</p>
+
+<p>4) Now you can create a docker container with your template:</p>
+
+<p>Click on <img src="../assets/images/articles/unraid-add-container-button.png" alt="" /> and then select your own template:</p>
+
+<p><img src="../assets/images/articles/unraid-select-custom-template.png" alt="" /></p>
+
+<p>And then all the configuration you defined in the xml file will be rendered as follow:</p>
+
+<p><img src="../assets/images/articles/unraid-display-custom-template.png" alt="" /></p>
+
+<p>As you can see we can define custom values, optional values, masked values for password etc. it is really powerful thank’s Unraid Devs!</p>
+
+<h2 id="integrate-your-docker-template-repository-with-the-community-apps-plugin">Integrate your docker template repository with the community apps plugin</h2>
+
+<p>TODO</p>
+
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://wiki.unraid.net/DockerTemplateSchema">Docker template schema</a></li>
+  <li><a href="https://forums.unraid.net/topic/57181-docker-faq/#comment-566084">Docker FAQ - Host app on community applications plugin</a>.</li>
+</ul>
+-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash; Rating &ndash;&gt;-->
+<!--            -->
+
+<!--            &lt;!&ndash; Post Date &ndash;&gt;-->
+<!--            <p>-->
+<!--            <small>-->
+<!--                <span class="post-date"><time class="post-date" datetime="2022-06-14">14 Jun 2022</time></span>           -->
+<!--                -->
+<!--                </small>-->
+<!--            </p>-->
+
+<!--            &lt;!&ndash; Post Categories &ndash;&gt;-->
+<!--            <div class="after-post-cats">-->
+<!--                <ul class="tags mb-4">-->
+<!--                    -->
+<!--                    -->
+<!--                    <li>-->
+<!--                        <a class="smoothscroll" href="/categories#unraid">unraid</a>-->
+<!--                    </li>-->
+<!--                    -->
+<!--                </ul>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; End Categories &ndash;&gt;-->
+
+<!--            &lt;!&ndash; Post Tags &ndash;&gt;-->
+<!--            <div class="after-post-tags">-->
+<!--                <ul class="tags">-->
+<!--                    -->
+<!--                    -->
+<!--                    <li>-->
+<!--                        <a class="smoothscroll" href="/tags#docker">#docker</a>-->
+<!--                    </li>-->
+<!--                    -->
+<!--                </ul>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; End Tags &ndash;&gt;-->
+
+<!--            &lt;!&ndash; Prev/Next &ndash;&gt;-->
+<!--            <div class="row PageNavigation d-flex justify-content-between font-weight-bold">-->
+<!--            -->
+<!--            <a class="prev d-block col-md-6" href="//tools/linux-screenshots-flameshot.html"> &laquo; Falmeshot - Do screenshots and annotate them in seconds !</a>-->
+<!--            -->
+<!--            -->
+<!--            <a class="next d-block col-md-6 text-lg-right" href="//tools/ttsmp3-free-online-text-to-speech.html">[Howto] Convert a text to a speech audio file for free using TTSMP3 &raquo; </a>-->
+<!--            -->
+<!--            <div class="clearfix"></div>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; End Categories &ndash;&gt;-->
+
+<!--        </div>-->
+<!--        &lt;!&ndash; End Post &ndash;&gt;-->
+
+<!--    </div>-->
+<!--</div>-->
+<!--&lt;!&ndash; End Article-->
+<!--================================================== &ndash;&gt;-->
+
+<!--&lt;!&ndash; Begin Comments-->
+<!--&lt;!&ndash;================================================== &ndash;&gt;&ndash;&gt;-->
+<!---->
+<!--    <div class="container">-->
+<!--        <div id="comments" class="row justify-content-center mb-5">-->
+<!--            <div class="col-md-8">-->
+<!--                <section class="disqus">
+
+    <div id="disqus_thread"></div>
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+        /*
+        var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        */
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            var disqus_shortname = '';
+            s.src = 'https://cookiecode-dev.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!---->
+<!--&lt;!&ndash;End Comments-->
+<!--================================================== &ndash;&gt;-->
+
+<!--&lt;!&ndash; Review with LD-JSON, adapt it for your needs if you like, but make sure you test the generated HTML source code first: -->
+<!--https://search.google.com/structured-data/testing-tool/u/0/-->
+<!--================================================== &ndash;&gt;-->
+<!---->
+    </div>
+</article>
+
+
+
+<!--&lt;!&ndash; Categories Jumbotron-->
+<!--================================================== &ndash;&gt;-->
+<!--<div class="jumbotron fortags">-->
+<!--	<div class="d-md-flex h-100">-->
+<!--		<div class="col-md-8 p-5 align-self-center text-center">-->
+<!--            -->
+<!--            -->
+<!--                -->
+<!--                    <a class="mt-1 mb-1" href="/categories#languages">languages (1)</a>-->
+<!--                -->
+<!--                    <a class="mt-1 mb-1" href="/categories#java">java (1)</a>-->
+<!--                -->
+<!--                    <a class="mt-1 mb-1" href="/categories#tools">tools (4)</a>-->
+<!--                -->
+<!--                    <a class="mt-1 mb-1" href="/categories#design-pattern">design pattern (1)</a>-->
+<!--                -->
+<!--                    <a class="mt-1 mb-1" href="/categories#linux">linux (1)</a>-->
+<!--                -->
+<!--                    <a class="mt-1 mb-1" href="/categories#unraid">unraid (1)</a>-->
+<!--                -->
+<!--                    <a class="mt-1 mb-1" href="/categories#iot">iot (1)</a>-->
+<!--                -->
+<!--            -->
+<!--            -->
+<!--		</div>-->
+<!--	</div>-->
+<!--</div>-->
+
+
+<!-- Begin Footer
+================================================== -->
+<footer class="footer">
+    <div class="footer-top"></div>
+            <div class="ui center aligned container no-dark">
+                <div class="ui stackable divided grid no-dark">
+                    <div class="three wide column no-dark">
+                        <h4 class="ui header">Languages</h4>
+                        <div class="ui link list">
+                            <a href="/categories/java/index.html" class="item">JAVA</a>
+                            
+                        </div>
+                    </div>
+                    <div class="three wide column no-dark">
+                        <h4 class="ui header">Tooling</h4>
+                        <div class="ui link list">
+                            
+                            <a href="/categories/unraid/index.html" class="item">Unraid</a>
+                            <a href="/categories/iot/index.html" class="item">IoT</a>
+                        </div>
+                    </div>
+                    <div class="three wide column no-dark">
+                        <h4 class="ui header">Concepts</h4>
+                        <div class="ui link list">
+                            
+                            <a href="/categories/design-pattern/index.html" class="item">Design pattern</a>
+                            
+                            
+                        </div>
+                    </div>
+                    <div class="seven wide column no-dark">
+                        <div class="ui link list">
+                            <a href="/tags.html" class="item">Browse all tags</a>
+                            <a href="/categories.html" class="item">Browse all categories</a>
+                        </div>
+                        <h4 class="ui header no-dark">"Knowledge increases by sharing but not by saving."</h4>
+                        <p class="no-dark">Source: (not me but I like it :) -> Internet..</p>
+                    </div>
+                </div>
+            </div>
+
+    <div class="separator-line"></div>
+    <div class="footer-bottom">
+        <p class="text-center">
+            Copyright © 2022 CookieCode
+        </p>
+    </div>
+</footer>
+<!-- End Footer
+================================================== -->
+
+
+<!-- Scripts
+================================================== -->
+    <script src="/assets/js/jquery.min.js"></script>
+
+    <script src="/assets/js/theme-switcher.js"></script>
+    <script src="https://kit.fontawesome.com/95a5628c97.js" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.js"></script>
+
+    <script>
+        $('.ui.sticky')
+            .sticky({
+                context: '#oss-sticky-left',
+                offset: 80
+            })
+        ;
+    </script>
+
+    <script src="/assets/js/source-code-fancier.js"></script>
+<!--<script src="/assets/vendor/fomantic-ui/javascripts/semantic-ui.js"></script>-->
+
+<!--<script src="/assets/js/mediumish.js"></script>-->
+
+<!---->
+
+<!--<script src="/assets/js/ie10-viewport-bug-workaround.js"></script>-->
+
+<!---->
+<!--<script id="dsq-count-scr" src="//.disqus.com/count.js"></script>-->
+<!---->
+
+</body>
+</html>
