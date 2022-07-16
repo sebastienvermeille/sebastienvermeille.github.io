@@ -39,6 +39,8 @@ gems: []
 # used to define a custom set of emojis
 #  src: "/assets/images/emoji"
 
+output_ext: ".html"
+
 # Archives
 jekyll-archives:
   enabled:
@@ -49,7 +51,7 @@ jekyll-archives:
     category: category-archive
     tag: tag-archive
   permalinks:
-    category: '/categories/:name/'
+    category: "/categories/:name/"
 
 # Pagination
 paginate: 6

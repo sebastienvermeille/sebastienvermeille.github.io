@@ -8,7 +8,7 @@ permalink: "/categories.html"
 <div class="row listrecent">
 {% for category in site.categories %}
 <div class="section-title col-md-12 mt-4">
-<h2 id="{{ category[0] | replace: ' ','-' }}"><span class="text-capitalize"><a href="/categories/{{ category[0] | replace: ' ','-' }}">{{ category[0] }}</a></span></h2>
+<h2 id="{{ category[0] | replace: ' ','-' }}"><span class="text-capitalize"><a href="/categories/{{ category[0] | replace: ' ','-' }}/index.html">{{ category[0] }}</a></span></h2>
 </div>
 {% assign pages_list = category[1] %}
 {% for post in pages_list %}

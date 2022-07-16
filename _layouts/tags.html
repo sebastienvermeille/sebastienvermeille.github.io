@@ -29,7 +29,7 @@ permalink: "/tags"
         {% if sorted_tag_array[0].size == 2 %}
         {% assign sorted_tag_size = sorted_tag_array[0] | slice: 1 %}
         {% endif %}
-        <a href="/tag/{{ sorted_tag_array[1] | slugify }}" class="post-tag">
+        <a href="/tag/{{ sorted_tag_array[1] | slugify }}/index.html" class="post-tag">
             <h2 id="{{ sorted_tag_array[1] | slugify }}">#{{sorted_tag_array[1]}} ({{sorted_tag_array[0] | slice: 1 }})</h2>
         </a>
         {% endfor %}
