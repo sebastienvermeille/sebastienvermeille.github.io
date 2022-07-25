@@ -1,43 +1,54 @@
 ---
 layout: default
 ---
-<div class="ui segment" id="oss-sticky-left">
-    <div class="left ui rail" style="">
-        <p></p>
-        <p></p>
-        <p></p>
-        <div class="ui sticky">
-            <div class="overlay">
-                <div class="ui labeled icon vertical menu">
-                    <a class="item" target="_blank" href="https://twitter.com/intent/tweet?text={{ page.title }}&url={{ page.url | absolute_url }}" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-                        <i class="fa-brands fa-twitter icon"></i>
-                    </a>
-                    <a class="item" target="_blank" href="https://facebook.com/sharer.php?u={{ page.url | absolute_url }}" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
-                        <i class="fa-brands fa-facebook icon"></i>
-                    </a>
-                    <a class="item" target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url={{ page.url | absolute_url }}" onclick="window.open(this.href, 'width=550,height=435');return false;">
-                    <i class="fa-brands fa-linkedin icon"></i>
-                    </a>
-                </div>
-            </div>
 
-        </div>
-    </div>
-    <div class="right ui rail">
-        <div class="ui sticky" style="width: 272px !important; height: 262.672px !important; left: 2317.5px;">
-            <div class="ui labeled icon vertical menu" id="metadata-stickya">
-                <a class="item" href="{{ page.repository }}"><i class="fa-solid fa-code icon"></i> Source code</a>
-                <a class="item"><i class="fa-solid fa-file icon"></i> License</a>
-            </div>
-        </div>
-    </div>
+<section class="section">
+    <h1 class="title gradient-text">{{ page.title }}</h1>
+    <h2 class="subtitle">
+        {{ page.description }}
+    </h2>
+</section>
 
-    <h1 class="gradient-text">{{ page.title }}</h1>
-    <h3 class="gradient-text">{{ page.description }}</h3>
-    <p></p>
-    <p> {{ content }}</p>
-    <p></p>
-    <p>
-        If you have suggestions, bugs to report for it please open issues on the github repo directly. PR are also weclome!
-    </p>
+<section>
+<div class="container">
+
+    <div class="content">
+        <p> {{ content }}</p>
+        <p>
+            If you have suggestions, bugs to report for it please open issues on the github repo directly. PR are also weclome!
+        </p>
+    </div>
 </div>
+<!--<div class="ui segment" id="oss-sticky-left">-->
+<!--    <div class="left ui rail" style="">-->
+<!--        <p></p>-->
+<!--        <p></p>-->
+<!--        <p></p>-->
+<!--        <div class="ui sticky">-->
+<!--            <div class="overlay">-->
+<!--                <div class="ui labeled icon vertical menu">-->
+<!--                    <a class="item" target="_blank" href="https://twitter.com/intent/tweet?text={{ page.title }}&url={{ page.url | absolute_url }}" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">-->
+<!--                        <i class="fa-brands fa-twitter icon"></i>-->
+<!--                    </a>-->
+<!--                    <a class="item" target="_blank" href="https://facebook.com/sharer.php?u={{ page.url | absolute_url }}" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">-->
+<!--                        <i class="fa-brands fa-facebook icon"></i>-->
+<!--                    </a>-->
+<!--                    <a class="item" target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url={{ page.url | absolute_url }}" onclick="window.open(this.href, 'width=550,height=435');return false;">-->
+<!--                    <i class="fa-brands fa-linkedin icon"></i>-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="right ui rail">-->
+<!--        <div class="ui sticky" style="width: 272px !important; height: 262.672px !important; left: 2317.5px;">-->
+<!--            <div class="ui labeled icon vertical menu" id="metadata-stickya">-->
+<!--                <a class="item" href="{{ page.repository }}"><i class="fa-solid fa-code icon"></i> Source code</a>-->
+<!--                <a class="item"><i class="fa-solid fa-file icon"></i> License</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+</section>

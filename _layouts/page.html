@@ -2,14 +2,17 @@
 layout: default
 ---
 
-<div class="ui segment" id="oss-sticky-left">
-    <div class="left ui rail" style=""></div>
-    <div class="right ui rail"></div>
+<section class="section">
+    <h1 class="title gradient-text">{{ page.title }}</h1>
+    <h2 class="subtitle">
+        {{ page.subtitle }}
+    </h2>
+</section>
 
-    <h1 class="gradient-text">{{ page.title }}</h1>
-    <p></p>
-    <p> {{ content }}</p>
-    <p></p>
+<div class="container">
+        <div class="content">
+        {{ content }}
+        </div>
 
     {% if page.comments == true %}
 

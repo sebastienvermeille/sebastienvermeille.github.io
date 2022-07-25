@@ -1,7 +1,9 @@
 ---
 layout: default
 ---
-<h1 class="ui gradient-text">Posts with tag #{{ page.title }}</h1>
+<div class="container box">
+    <div class="content">
+<h1 class="title gradient-text">Posts with tag #{{ page.title }}</h1>
 <ul class="posts">
     {% for post in page.posts %}
     <li>
@@ -10,7 +12,8 @@ layout: default
     </li>
     {% endfor %}
 </ul>
-
+    </div>
+</div>
 <!--    {% assign pages_list = tag[1] %}-->
 <!--    {% for post in pages_list %}-->
 <!--    {% if post.title != null %}-->

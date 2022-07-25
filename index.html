@@ -3,14 +3,32 @@ layout: default
 title: Home
 subtheme: sub-theme-simple-page
 ---
+<section class="section">
+    <h1 class="title gradient-text">Quote of the day</h1>
+    <div class="card">
+        <div class="card-content">
+            <p class="title">
+                The best way
+                to have a good idea is
+                to have a lot of ideas.
+            </p>
+            <p class="subtitle">Linus Pauling (1901 – 1994, American chemist, author and educator)</p>
+        </div>
+    </div>
+</section>
 
-<h1 class="ui gradient-text">Blog articles</h1>
-<div class="ui items">
-    {% for post in paginator.posts %}
-    {% include postbox.html %}
-    {% endfor %}
-</div>
+<section class="section">
+    <h1 class="title gradient-text">     Recent Posts</h1>
+</section>
+<section>
+    <div class="container box">
+        <div class="content">
 
-<div class="bottompagination">
-    <span class="navigation" role="navigation">{% include pagination.html %}</span>
-</div>
+
+            {% for post in site.posts offset:1 limit:2 %}
+            {% include postbox.html %}
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
