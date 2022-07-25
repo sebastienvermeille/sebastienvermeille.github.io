@@ -9,18 +9,21 @@ layout: default
     </h2>
 </section>
 
-<div class="container">
+<section class="section">
+    <div class="container">
         <div class="content">
-        {{ content }}
+            {{ content }}
         </div>
 
-    {% if page.comments == true %}
+        {% if page.comments == true %}
 
-    <div id="comments" class="row mb-5">
-        <div class="col-md-8">
-            {% include disqus.html %}
+        <div id="comments" class="row mb-5">
+            <div class="col-md-8">
+                {% include disqus.html %}
+            </div>
         </div>
+
+        {% endif %}
     </div>
 
-    {% endif %}
-</div>
+</section>
