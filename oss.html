@@ -5,24 +5,38 @@ permalink: /oss/
 subtheme: sub-theme-oss
 ---
 
-<!-- OSS article Index
-================================================== -->
-<section class="oss-projects-list">
-        <h1 class="gradient-text">OSS projects I maintain or contribute actively</h1>
+<section class="section">
+    <h1 class="title gradient-text">Open source contributions</h1>
+    <h2 class="subtitle">
+        OSS projects I maintain or contribute actively
+    </h2>
+</section>
 
-    <div class="ui link cards">
+<section>
+<div class="container ">
+    <div class="content">
+
+    <div class="link cards">
         {% for project in site.oss %}
-        <div class="card">
-            <a class="content" href="{{ site.baseurl }}{{ project.url }}">
-                <img class="right floated mini ui image" src="{{ site.baseurl }}/assets/images/oss/stepbuilder-codegen.svg">
-                <div class="header">
-                    {{ project.title }}
+        <a href="{{ site.baseurl }}{{ project.url }}">
+            <div class="card">
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-left">
+                            <figure class="image is-48x48">
+                                <img src="{{ site.baseurl }}/assets/images/oss/stepbuilder-codegen.svg" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="media-content">
+                            <p class="title is-4">{{ project.title }}</p>
+                            <p class="subtitle is-6">{{ project.description }}</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="meta">
-                    {{ project.description }}
-                </div>
-            </a>
-        </div>
+            </div>
+        </a>
         {% endfor %}
     </div>
+</div>
+</div>
 </section>

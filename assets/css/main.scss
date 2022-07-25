@@ -9,7 +9,8 @@
 }
 
 // Import partials from `sass_dir` (defaults to `_sass`)
-@import "vendor/fomantic-ui/stylesheets/semantic-ui.scss";
+//@import "vendor/fomantic-ui/stylesheets/semantic-ui.scss";
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
 @import "syntax";
 @import "starsnonscss";
 @import "source-code-block";
@@ -161,17 +162,6 @@ ul.tags-list > li > a {
 }
 
 
-//HEADER
-.ui.menu .item img.logo {
-	margin-right: 1.5em;
-}
-.main.container {
-	margin-top: 7em;
-}
-.ui.footer.segment {
-	margin: 5em 0em 0em;
-	padding: 5em 0em;
-}
 
 /*======================
  Fix footer position
@@ -212,9 +202,9 @@ footer {
 	}
 }
 
-.footer-bottom > p {
-	padding-bottom:20px;
-}
+//.footer-bottom > p {
+//	padding-bottom:20px;
+//}
 
 
 .footer-top

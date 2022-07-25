@@ -27,47 +27,90 @@
     {% assign subtheme = page.subtheme | default: 'sub-theme-simple-page' %}
 
 <body class="{{layout}} {{ subtheme }}">
-	<!-- defer loading of font and font awesome -->
-	<noscript id="deferred-styles">
-		<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
-	</noscript>
+<!--	&lt;!&ndash; defer loading of font and font awesome &ndash;&gt;-->
+<!--	<noscript id="deferred-styles">-->
+<!--		<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">-->
+<!--	</noscript>-->
 
+    <nav class="navbar gradient-bg" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            {% assign splittedUrl = page.url | downcase | split: '/' %}
+            <a class="navbar-item" href="/">
+                <img src="{{ site.baseurl }}/{{ site.logo }}" width="112" height="28" alt="{{ site.name }} logo">
+            </a>
 
-<!--HEADER MENU -->
-<header class="ui fixed menu gradient-bg">
-    <div class="ui container">
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
 
-        {% assign splittedUrl = page.url | downcase | split: '/' %}
-        <a href="{{ site.baseurl }}/" class="header item">
-            <img class="logo" src="{{ site.baseurl }}/{{ site.logo }}" alt="{{ site.name }}">
-            {{ site.name }}
-        </a>
-        <a href="{{ site.baseurl }}/index.html" class="item{% if splittedUrl[1] == 'blog' %} active{% endif %}">Blog</a>
-        <a href="{{ site.baseurl }}/oss/" class="item{% if splittedUrl[1] == 'oss' %} active{% endif %}">Open Source</a>
-        <a href="{{ site.baseurl }}/about/" class="item{% if splittedUrl[1] == 'about' %} active{% endif %}">About me</a>
+        <!--        <a href="{{ site.baseurl }}/index.html" class="item{% if splittedUrl[1] == 'blog' %} active{% endif %}">Blog</a>-->
+        <!--        <a href="{{ site.baseurl }}/oss/" class="item{% if splittedUrl[1] == 'oss' %} active{% endif %}">Open Source</a>-->
+        <!--        <a href="{{ site.baseurl }}/about/" class="item{% if splittedUrl[1] == 'about' %} active{% endif %}">About me</a>-->
 
-        <label class="theme_changer" style="display:none;">
-            <input theme_toggle type="checkbox" id="theme_toggle">
-            <div class="button"></div>
-        </label>
+        <div id="navbar" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item {% if splittedUrl[1] == 'blog' %} is-active{% endif %}" href="{{ site.baseurl }}/blog/">
+                    Blog
+                </a>
 
-<!--        {% include search-lunr.html %}-->
-    </div>
-</header>
-<article class="ui main container">
-    <div class="ui icon right floated buttons" id="theme-switcher">
-        <button class="ui button" onclick="themeSwitch('light');">
-            <i class="fa-solid fa-sun"></i>
-        </button>
-        <button class="ui button" onclick="themeSwitch('dark');">
-            <i class="fa-solid fa-moon"></i>
-        </button>
-    </div>
-    <div class="ui text container">
+                <a class="navbar-item {% if splittedUrl[1] == 'oss' %} is-active{% endif %}" href="{{ site.baseurl }}/oss/">
+                    Open Source
+                </a>
+
+                <a class="navbar-item {% if splittedUrl[1] == 'oss' %} is-active{% endif %}" href="{{ site.baseurl }}/about/">
+                    About me
+                </a>
+
+<!--                <div class="navbar-item has-dropdown is-hoverable">-->
+<!--                    <a class="navbar-link">-->
+<!--                        More-->
+<!--                    </a>-->
+
+<!--                    <div class="navbar-dropdown">-->
+<!--                        <a class="navbar-item">-->
+<!--                            About-->
+<!--                        </a>-->
+<!--                        <a class="navbar-item">-->
+<!--                            Jobs-->
+<!--                        </a>-->
+<!--                        <a class="navbar-item">-->
+<!--                            Contact-->
+<!--                        </a>-->
+<!--                        <hr class="navbar-divider">-->
+<!--                        <a class="navbar-item">-->
+<!--                            Report an issue-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
+            </div>
+
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons has-addons">
+                        <button class="button is-small" onclick="themeSwitch('light');">
+                            <span class="icon is-small">
+                            <i class="fas fa-sun"></i>
+                          </span>
+                                            </button>
+                                            <button class="button is-small" onclick="themeSwitch('dark');">
+                            <span class="icon is-small">
+                            <i class="fas fa-moon"></i>
+                          </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+<label class="theme_changer" style="display:none;">
+    <input theme_toggle type="checkbox" id="theme_toggle">
+    <div class="button"></div>
+</label>
+
         {{ content }}
-    </div>
-</article>
-
 
 
 <!--&lt;!&ndash; Categories Jumbotron-->
@@ -93,59 +136,145 @@
 
 <!-- Begin Footer
 ================================================== -->
+
 <footer class="footer">
     <div class="footer-top"></div>
-            <div class="ui center aligned container no-dark">
-                <div class="ui stackable divided grid no-dark">
-                    <div class="three wide column no-dark">
-                        <h4 class="ui header">Languages</h4>
-                        <div class="ui link list">
-                            <a href="/categories/java/index.html" class="item">JAVA</a>
-                            {% comment %}
-                            <a href="/categories/python/index.html" class="item">Python</a>
-                            <a href="/categories/php/index.html" class="item">PHP</a>
-                            <a href="/categories/jslang/index.html" class="item">Javascript / Typescript</a>
-                            {% endcomment %}
-                        </div>
-                    </div>
-                    <div class="three wide column no-dark">
-                        <h4 class="ui header">Tooling</h4>
-                        <div class="ui link list">
-                            {% comment %}
-                            <a href="/categories/ci-cd.html" class="item">CI/CD</a>
-                            <a href="/categories/docker.html" class="item">Docker</a>
-                            {% endcomment %}
-                            <a href="/categories/unraid/index.html" class="item">Unraid</a>
-                            <a href="/categories/iot/index.html" class="item">IoT</a>
-                        </div>
-                    </div>
-                    <div class="three wide column no-dark">
-                        <h4 class="ui header">Concepts</h4>
-                        <div class="ui link list">
-                            {% comment %}<a href="#" class="item">Data modeling</a>{% endcomment %}
-                            <a href="/categories/design-pattern/index.html" class="item">Design pattern</a>
-                            {% comment %}<a href="#" class="item">Recipes, Cookbook</a>{% endcomment %}
-                            {% comment %}<a href="#" class="item">Opinionated thoughts</a>{% endcomment %}
-                        </div>
-                    </div>
-                    <div class="seven wide column no-dark">
-                        <div class="ui link list">
-                            <a href="/tags.html" class="item">Browse all tags</a>
-                            <a href="/categories.html" class="item">Browse all categories</a>
-                        </div>
-                        <h4 class="ui header no-dark">"Knowledge increases by sharing but not by saving."</h4>
-                        <p class="no-dark">Source: (not me but I like it :) -> Internet..</p>
-                    </div>
-                </div>
-            </div>
+
+    <div class="is-hidden-desktop-only">
+        <select>
+            <optgroup label="Languages">Languages</optgroup>
+            <option>JAVA</option>
+            <optgroup label="Tooling">Tooling</optgroup>
+            <option>Unraid</option>
+            <option>IoT</option>
+            <optgroup label="Concepts">Concepts</optgroup>
+            <option>Design pattern</option>
+        </select>
+    </div>
+
+    <div class="columns is-hidden-mobile">
+        <div class="column">
+            Languages
+            <ul>
+                <li>
+                    <a href="/categories/java/index.html" class="item">JAVA</a>
+                </li>
+                {% comment %}
+                <a href="/categories/python/index.html" class="item">Python</a>
+                <a href="/categories/php/index.html" class="item">PHP</a>
+                <a href="/categories/jslang/index.html" class="item">Javascript / Typescript</a>
+                {% endcomment %}
+            </ul>
+        </div>
+        <div class="column">
+            Tooling
+            <ul>
+                {% comment %}
+                <li>
+                    <a href="/categories/ci-cd.html" class="item">CI/CD</a>
+                </li>
+                <li>
+                    <a href="/categories/docker.html" class="item">Docker</a>
+                </li>
+                {% endcomment %}
+                <li>
+                    <a href="/categories/unraid/index.html" class="item">Unraid</a>
+                </li>
+                <li>
+                    <a href="/categories/iot/index.html" class="item">IoT</a>
+                </li>
+            </ul>
+        </div>
+        <div class="column">
+            Concepts
+            <ul>
+                {% comment %}
+                <li>
+                    <a href="#" class="item">Data modeling</a>
+                </li>
+                {% endcomment %}
+                <li>
+                    <a href="/categories/design-pattern/index.html" class="item">Design pattern</a>
+                </li>
+                {% comment %}
+                <li>
+                    <a href="#" class="item">Recipes, Cookbook</a>
+                </li>
+                <li>
+                    <a href="#" class="item">Opinionated thoughts</a>
+                </li>
+                {% endcomment %}
+            </ul>
+        </div>
+        <div class="column">
+            Quote
+        </div>
+    </div>
 
     <div class="separator-line"></div>
-    <div class="footer-bottom">
-        <p class="text-center">
-            Copyright © {{ site.time | date: "%Y" }} {{ site.name }}
+
+    <div class="content has-text-centered">
+        <p>
+            <strong>{{ site.name }}</strong> <a href="https://github.com/sebastienvermeille/sebastienvermeille.github.io/tree/master">source code</a> is licensed
+            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content (incl. markdown files)
+            are licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
         </p>
     </div>
 </footer>
+
+<!--<footer class="footer">-->
+<!--    <div class="footer-top"></div>-->
+<!--            <div class="ui center aligned container no-dark">-->
+<!--                <div class="ui stackable divided grid no-dark">-->
+<!--                    <div class="three wide column no-dark">-->
+<!--                        <h4 class="ui header">Languages</h4>-->
+<!--                        <div class="ui link list">-->
+<!--                            <a href="/categories/java/index.html" class="item">JAVA</a>-->
+<!--                            {% comment %}-->
+<!--                            <a href="/categories/python/index.html" class="item">Python</a>-->
+<!--                            <a href="/categories/php/index.html" class="item">PHP</a>-->
+<!--                            <a href="/categories/jslang/index.html" class="item">Javascript / Typescript</a>-->
+<!--                            {% endcomment %}-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="three wide column no-dark">-->
+<!--                        <h4 class="ui header">Tooling</h4>-->
+<!--                        <div class="ui link list">-->
+<!--                            {% comment %}-->
+<!--                            <a href="/categories/ci-cd.html" class="item">CI/CD</a>-->
+<!--                            <a href="/categories/docker.html" class="item">Docker</a>-->
+<!--                            {% endcomment %}-->
+<!--                            <a href="/categories/unraid/index.html" class="item">Unraid</a>-->
+<!--                            <a href="/categories/iot/index.html" class="item">IoT</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="three wide column no-dark">-->
+<!--                        <h4 class="ui header">Concepts</h4>-->
+<!--                        <div class="ui link list">-->
+<!--                            {% comment %}<a href="#" class="item">Data modeling</a>{% endcomment %}-->
+<!--                            <a href="/categories/design-pattern/index.html" class="item">Design pattern</a>-->
+<!--                            {% comment %}<a href="#" class="item">Recipes, Cookbook</a>{% endcomment %}-->
+<!--                            {% comment %}<a href="#" class="item">Opinionated thoughts</a>{% endcomment %}-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="seven wide column no-dark">-->
+<!--                        <div class="ui link list">-->
+<!--                            <a href="/tags.html" class="item">Browse all tags</a>-->
+<!--                            <a href="/categories.html" class="item">Browse all categories</a>-->
+<!--                        </div>-->
+<!--                        <h4 class="ui header no-dark">"Knowledge increases by sharing but not by saving."</h4>-->
+<!--                        <p class="no-dark">Source: (not me but I like it :) -> Internet..</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--    <div class="separator-line"></div>-->
+<!--    <div class="footer-bottom">-->
+<!--        <p class="text-center">-->
+<!--            Copyright © {{ site.time | date: "%Y" }} {{ site.name }}-->
+<!--        </p>-->
+<!--    </div>-->
+<!--</footer>-->
 <!-- End Footer
 ================================================== -->
 
@@ -155,29 +284,29 @@
     <script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>
 
     <script src="{{ site.baseurl }}/assets/js/theme-switcher.js"></script>
-    <script src="https://kit.fontawesome.com/95a5628c97.js" crossorigin="anonymous"></script>
+<!--    <script src="https://kit.fontawesome.com/95a5628c97.js" crossorigin="anonymous"></script>-->
 
-    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.js"></script>
+<!--    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.js"></script>-->
 
-    <script>
-        $('.ui.sticky')
-            .sticky({
-                context: '#oss-sticky-left',
-                offset: 80
-            })
-        ;
-    </script>
+<!--    <script>-->
+<!--        $('.ui.sticky')-->
+<!--            .sticky({-->
+<!--                context: '#oss-sticky-left',-->
+<!--                offset: 80-->
+<!--            })-->
+<!--        ;-->
+<!--    </script>-->
 
-    <script src="{{ site.baseurl }}/assets/js/source-code-fancier.js"></script>
-<!--<script src="{{ site.baseurl }}/assets/vendor/fomantic-ui/javascripts/semantic-ui.js"></script>-->
+<!--    <script src="{{ site.baseurl }}/assets/js/source-code-fancier.js"></script>-->
+<!--&lt;!&ndash;<script src="{{ site.baseurl }}/assets/vendor/fomantic-ui/javascripts/semantic-ui.js"></script>&ndash;&gt;-->
 
-<!--<script src="{{ site.baseurl }}/assets/js/mediumish.js"></script>-->
+<!--&lt;!&ndash;<script src="{{ site.baseurl }}/assets/js/mediumish.js"></script>&ndash;&gt;-->
 
-<!--{% if site.lazyimages == "enabled" %}-->
-<!--<script src="{{ site.baseurl }}/assets/js/lazyload.js"></script>-->
-<!--{% endif %}-->
+<!--&lt;!&ndash;{% if site.lazyimages == "enabled" %}&ndash;&gt;-->
+<!--&lt;!&ndash;<script src="{{ site.baseurl }}/assets/js/lazyload.js"></script>&ndash;&gt;-->
+<!--&lt;!&ndash;{% endif %}&ndash;&gt;-->
 
-<!--<script src="{{ site.baseurl }}/assets/js/ie10-viewport-bug-workaround.js"></script>-->
+<!--&lt;!&ndash;<script src="{{ site.baseurl }}/assets/js/ie10-viewport-bug-workaround.js"></script>&ndash;&gt;-->
 
 <!--{% if page.layout == 'post' %}-->
 <!--<script id="dsq-count-scr" src="//{{site.disqus}}.disqus.com/count.js"></script>-->

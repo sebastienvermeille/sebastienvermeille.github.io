@@ -3,22 +3,26 @@ title: "Categories"
 layout: default
 permalink: "/categories.html"
 ---
-<h1 class="ui gradient-text">Categories</h1>
+<div class="container box">
+    <div class="content">
+        <h1 class="title gradient-text">Categories</h1>
 
-<div class="row listrecent">
-{% for category in site.categories %}
-<div class="section-title col-md-12 mt-4">
-<h2 id="{{ category[0] | replace: ' ','-' }}"><span class="text-capitalize"><a href="/categories/{{ category[0] | replace: ' ','-' }}/index.html">{{ category[0] }}</a></span></h2>
-</div>
-{% assign pages_list = category[1] %}
-{% for post in pages_list %}
-{% if post.title != null %}
-{% if group == null or group == post.group %}
-{% include postbox.html %}
-{% endif %}
-{% endif %}
-{% endfor %}
-{% assign pages_list = nil %}
-{% assign group = nil %}
-{% endfor %}
+        <div class="row listrecent">
+            {% for category in site.categories %}
+            <div class="section-title col-md-12 mt-4">
+                <h2 id="{{ category[0] | replace: ' ','-' }}"><span class="text-capitalize"><a href="/categories/{{ category[0] | replace: ' ','-' }}/index.html">{{ category[0] }}</a></span></h2>
+            </div>
+            {% assign pages_list = category[1] %}
+            {% for post in pages_list %}
+            {% if post.title != null %}
+            {% if group == null or group == post.group %}
+            {% include postbox.html %}
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            {% assign pages_list = nil %}
+            {% assign group = nil %}
+            {% endfor %}
+        </div>
+    </div>
 </div>
