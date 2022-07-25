@@ -8,6 +8,7 @@
         <link href="{{ site.baseurl }}/assets/css/main.css" rel="stylesheet">
         <link href="{{ site.baseurl }}/assets/vendors/fontawesome/css/all.css" rel="stylesheet">
         {% seo %}
+        <base href="{{ site.baseurl }}">
     </head>
 
     {% if jekyll.environment == 'production' %}
@@ -52,15 +53,15 @@
 
         <div id="navbar" class="navbar-menu">
             <div class="navbar-start">
-                <a class="navbar-item {% if splittedUrl[1] == 'blog' %} is-active{% endif %}" href="{{ site.baseurl }}/blog/">
+                <a class="navbar-item {% if splittedUrl[1] == 'blog' %} is-active{% endif %}" href="/blog/">
                     Blog
                 </a>
 
-                <a class="navbar-item {% if splittedUrl[1] == 'oss' %} is-active{% endif %}" href="{{ site.baseurl }}/oss/">
+                <a class="navbar-item {% if splittedUrl[1] == 'oss' %} is-active{% endif %}" href="/oss/">
                     Open Source
                 </a>
 
-                <a class="navbar-item {% if splittedUrl[1] == 'oss' %} is-active{% endif %}" href="{{ site.baseurl }}/about/">
+                <a class="navbar-item {% if splittedUrl[1] == 'oss' %} is-active{% endif %}" href="/about/">
                     About me
                 </a>
 
