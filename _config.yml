@@ -33,6 +33,7 @@ plugins:
   - jekyll-archives
   - jemoji
   - premonition
+  - jekyll-time-to-read
 
 gems:
   - octopress-paginate

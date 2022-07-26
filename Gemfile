@@ -15,6 +15,7 @@ group :jekyll_plugins do
   gem 'rouge'
   gem 'jemoji'
   gem "premonition", "4.0.1"
+  gem 'jekyll-time-to-read'
 end
 gem "webrick", "~> 1.7"
 

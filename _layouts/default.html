@@ -109,8 +109,9 @@
     <input theme_toggle type="checkbox" id="theme_toggle">
     <div class="button"></div>
 </label>
-
-        {{ content }}
+<main>
+    {{ content }}
+</main>
 
 
 <!--&lt;!&ndash; Categories Jumbotron-->
@@ -141,7 +142,9 @@
     <div class="footer-top"></div>
 
     <div class="is-hidden-tablet">
+        <span class="select is-fullwidth">
         <select id="destination-selector">
+            <option value="">Choose a category ...</option>
             <optgroup label="Languages">Languages</optgroup>
             <option value="/categories/java/index.html">JAVA</option>
             <optgroup label="Tooling">Tooling</optgroup>
@@ -150,6 +153,7 @@
             <optgroup label="Concepts">Concepts</optgroup>
             <option value="/categories/design-pattern/index.html">Design pattern</option>
         </select>
+        </span>
     </div>
 
     <div class="columns is-hidden-mobile">
