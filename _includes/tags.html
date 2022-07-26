@@ -1,0 +1,19 @@
+<nav class="level is-mobile">
+    <div class="level-left">
+        <div class="field is-grouped is-grouped-multiline">
+            {% for tag in include.tags %}
+            <div class="control">
+                <div class="tags has-addons">
+                    <a class="tag is-link" href="/tag/{{ tag }}">{{ tag }}</a>
+<!--                    <a class="ui tag label" href="{{site.baseurl}}/tag/{{ tag | replace: " ","-" }}">#{{ tag }}</a>-->
+                    <span class="tag">
+                    <span class="icon">
+                        <i class="fas fa-tag"></i>
+                    </span>
+            </span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</nav>

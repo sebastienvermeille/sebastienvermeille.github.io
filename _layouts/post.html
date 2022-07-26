@@ -4,25 +4,72 @@ archive: false
 post_class: post-template
 ---
 
-<div class="container box">
-<div class="content">
+<section class="section">
     <h1 class="title gradient-text">{{ page.title }}</h1>
-    <figure class="image is-3by1">
-            <img src="{% if page.image contains "://" %}{{ page.image }}{% else %}{{ site.baseurl }}/{{ page.image }}{% endif %}" alt="{{ page.title }}">
-    </figure>
+</section>
+<section class="section">
+    <div class="container">
+        <div class="content">
+            <figure class="image is-3by1">
+                <img src="{% if page.image contains "://" %}{{ page.image }}{% else %}{{ site.baseurl }}/{{ page.image }}{% endif %}" alt="{{ page.title }}">
+            </figure>
 
-    {{ content }}
-    <p>
-        <small>
-            <span class="post-date">
-                <i class="fa-calendar icon"></i>
-                <time class="post-date" datetime="{{ page.date | date:"%Y-%m-%d" }}">Published: {{ page.date | timeago }}</time>
+            {{ content }}
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <nav class="panel">
+        <p class="panel-heading">
+            Metadata
+        </p>
+
+        <div class="panel-block">
+            <span class="panel-icon">
+              <i class="fas fa-calendar" aria-hidden="true"></i>
             </span>
-            {% if page.last_modified_at %}
-            (Updated: <time datetime="{{ page.last_modified_at | date_to_xmlschema }}" itemprop="dateModified">{{ page.last_modified_at | date: "%b %-d, %Y" }}</time>)
-            {% endif %}
-        </small>
-    </p>
+            <time class="post-date" datetime="{{ page.date | date:"%Y-%m-%d" }}">Published: {{ page.date | timeago }} ({{ page.date | date:"%Y-%m-%d" }})</time>
+        </div>
+
+
+        {% if page.last_modified_at %}
+        <div class="panel-block">
+            <span class="panel-icon">
+              <i class="fas fa-calendar" aria-hidden="true"></i>
+            </span>
+            <time class="post-last-update-date" datetime="{{ page.last_modified_at | date_to_xmlschema }}">Last update: {{ page.last_modified_at | timeago }} ({{ page.last_modified_at | date:"%Y-%m-%d" }})</time>
+        </div>
+        {% endif %}
+
+        <div class="panel-block">
+            {% assign sortedTags = page.tags | sort %}
+            {% include tags.html tags=sortedTags %}
+        </div>
+    </nav>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="content">
+            {% include disqus.html %}
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <h1 class="title gradient-text">Discover more articles...</h1>
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        {% if page.previous.url %}
+        <a class="pagination-previous" href="{{ site.baseurl }}/{{page.previous.url}}"> &laquo; {{page.previous.title}}</a>
+        {% endif %}
+        {% if page.next.url %}
+        <a class="pagination-next" href="{{ site.baseurl }}/{{page.next.url}}">{{page.next.title}} &raquo; </a>
+        {% endif %}
+    </nav>
+</section>
+
+
     <!-- Post Categories -->
 <!--    <div class="after-post-cats">-->
 <!--        <ul class="tags mb-4">-->
@@ -37,14 +84,7 @@ post_class: post-template
     <!-- End Categories -->
 
     <!-- Post Tags -->
-    <div class="after-post-tags">
 
-        {% assign sortedTags = page.tags | sort %}
-            {% for tag in sortedTags %}
-<a class="ui tag label" href="{{site.baseurl}}/tag/{{ tag | replace: " ","-" }}">#{{ tag }}</a>
-            {% endfor %}
-
-        <ul class="tags">
 <!--            {% assign sortedTags = page.tags | sort %}-->
 <!--            {% for tag in sortedTags %}-->
 
@@ -55,29 +95,10 @@ post_class: post-template
 <!--                <a class="smoothscroll" href="{{site.baseurl}}/tags#{{ tag | replace: " ","-" }}">#{{ tag }}</a>-->
 <!--            </li>-->
 <!--            {% endfor %}-->
-        </ul>
-    </div>
     <!-- End Tags -->
 
-    <!-- Prev/Next -->
-    <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
-        {% if page.previous.url %}
-        <a class="prev d-block col-md-6" href="{{ site.baseurl }}/{{page.previous.url}}"> &laquo; {{page.previous.title}}</a>
-        {% endif %}
-        {% if page.next.url %}
-        <a class="next d-block col-md-6 text-lg-right" href="{{ site.baseurl }}/{{page.next.url}}">{{page.next.title}} &raquo; </a>
-        {% endif %}
-        <div class="clearfix"></div>
-    </div>
-    <!-- End Categories -->
-    <p></p>
-    <div id="comments" class="row mb-5">
-        <div class="col-md-8">
-            {% include disqus.html %}
-        </div>
-    </div>
-</div>
-</div>
+
+
 
 <!--&lt;!&ndash; Begin Article-->
 <!--================================================== &ndash;&gt;-->
