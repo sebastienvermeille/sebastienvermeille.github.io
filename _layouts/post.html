@@ -24,7 +24,12 @@ post_class: post-template
         <p class="panel-heading">
             Metadata
         </p>
-
+        <div class="panel-block">
+            <span class="panel-icon">
+              <i class="fas fa-clock" aria-hidden="true"></i>
+            </span>
+            Reading time: ~{{ content | reading_time_as_i }}
+        </div>
         <div class="panel-block">
             <span class="panel-icon">
               <i class="fas fa-calendar" aria-hidden="true"></i>
