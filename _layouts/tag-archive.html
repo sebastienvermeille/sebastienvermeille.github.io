@@ -1,26 +1,17 @@
 ---
 layout: default
 ---
-<div class="container box">
-    <div class="content">
-<h1 class="title gradient-text">Posts with tag #{{ page.title }}</h1>
-<ul class="posts">
-    {% for post in page.posts %}
-    <li>
-        <span class="post-date">{{ post.date | timeago }}</span>
-        <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
-    </li>
-    {% endfor %}
-</ul>
+<section class="section">
+    <h1 class="title gradient-text">Posts with tag #{{ page.title }}</h1>
+</section>
+
+
+<section class="section">
+    <div class="container">
+        <div class="content">
+            {% for post in page.posts %}
+            {% include postbox.html %}
+            {% endfor %}
+        </div>
     </div>
-</div>
-<!--    {% assign pages_list = tag[1] %}-->
-<!--    {% for post in pages_list %}-->
-<!--    {% if post.title != null %}-->
-<!--    {% if group == null or group == post.group %}-->
-<!--    {% include mini-postbox.html %}-->
-<!--    {% endif %}-->
-<!--    {% endif %}-->
-<!--    {% endfor %}-->
-<!--    {% assign pages_list = nil %}-->
-<!--    {% assign group = nil %}-->
+</section>

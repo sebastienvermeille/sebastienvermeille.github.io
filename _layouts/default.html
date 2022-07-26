@@ -140,15 +140,15 @@
 <footer class="footer">
     <div class="footer-top"></div>
 
-    <div class="is-hidden-desktop-only">
-        <select>
+    <div class="is-hidden-tablet">
+        <select id="destination-selector">
             <optgroup label="Languages">Languages</optgroup>
-            <option>JAVA</option>
+            <option value="/categories/java/index.html">JAVA</option>
             <optgroup label="Tooling">Tooling</optgroup>
-            <option>Unraid</option>
-            <option>IoT</option>
+            <option value="/categories/unraid/index.html">Unraid</option>
+            <option value="/categories/iot/index.html">IoT</option>
             <optgroup label="Concepts">Concepts</optgroup>
-            <option>Design pattern</option>
+            <option value="/categories/design-pattern/index.html">Design pattern</option>
         </select>
     </div>
 
@@ -206,18 +206,15 @@
                 {% endcomment %}
             </ul>
         </div>
-        <div class="column">
-            Quote
-        </div>
     </div>
 
     <div class="separator-line"></div>
 
     <div class="content has-text-centered">
         <p>
-            <strong>{{ site.name }}</strong> <a href="https://github.com/sebastienvermeille/sebastienvermeille.github.io/tree/master">source code</a> is licensed
-            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content (incl. markdown files)
-            are licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+            <strong>{{ site.name }}</strong> <a href="https://github.com/sebastienvermeille/sebastienvermeille.github.io/tree/master" target="_blank">source code</a> is licensed
+            <a href="http://opensource.org/licenses/mit-license.php" target="_blank">MIT</a>. The website content (incl. markdown files)
+            are licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY NC SA 4.0</a>.
         </p>
     </div>
 </footer>
@@ -284,6 +281,8 @@
     <script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>
 
     <script src="{{ site.baseurl }}/assets/js/theme-switcher.js"></script>
+    <script src="{{ site.baseurl }}/assets/js/theme.js"></script>
+    <script src="{{ site.baseurl }}/assets/js/quotes.js"></script>
 <!--    <script src="https://kit.fontawesome.com/95a5628c97.js" crossorigin="anonymous"></script>-->
 
 <!--    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.js"></script>-->
