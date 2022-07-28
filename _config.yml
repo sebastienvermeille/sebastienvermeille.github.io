@@ -3,7 +3,7 @@ name: "CookieCode"
 title: "CookieCode"
 tagline: A blog dedicated to programming world
 description: "In this blog I share with you some answers to problems I faced during my life of developer. Also some nice tools I like to use, configurations and so on."
-logo: 'assets/images/logo.png'
+logo: 'assets/logo/png/logo.png'
 favicon: 'assets/images/logo.png'
 url: "https://cookiecode.dev"
 locale: 'en_US'
