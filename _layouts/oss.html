@@ -2,18 +2,13 @@
 layout: default
 ---
 
-<section class="section">
-    <div class="container">
-        <h1 class="title gradient-text">{{ page.title }}</h1>
-        <h2 class="subtitle">
-            {{ page.description }}
-        </h2>
-    </div>
-</section>
+<section class="section columns">
 
-<section class="section">
-<div class="container">
-
+<div class="container column is-10">
+    <h1 class="title gradient-text">{{ page.title }}</h1>
+    <h2 class="subtitle">
+        {{ page.description }}
+    </h2>
     <div class="content">
         <p> {{ content }}</p>
         <p>
@@ -21,6 +16,37 @@ layout: default
         </p>
     </div>
 </div>
+    <aside class="column is-2 is-narrow-mobile is-fullheight is-hidden-mobile">
+        <div class="section has-text-centered">
+            <img src="{{ site.baseurl }}/assets/logo/logo.svg" width="256" height="256" alt="{{ site.name }} logo" class="logo">
+
+            <!--            <img src="{{ site.baseurl }}/{{ site.logo }}" width="256" height="256" alt="{{ site.name }} logo">-->
+            <!--            <p>CookieCode</p>-->
+        </div>
+        <nav class="panel">
+            <p class="panel-heading">
+                Metadata
+            </p>
+            <div class="panel-block">
+                <span class="panel-icon">
+                    <i class="fas fa-code" aria-hidden="true"></i>
+                </span>
+                <a class="item" href="{{ page.repository }}"> Source code</a>
+            </div>
+            <div class="panel-block">
+                <span class="panel-icon">
+                  <i class="fas fa-file" aria-hidden="true"></i>
+                </span>
+                {{ page.license }}
+            </div>
+
+
+            <div class="panel-block">
+                {% assign sortedTags = page.tags | sort %}
+                {% include tags.html tags=sortedTags %}
+            </div>
+        </nav>
+    </aside>
 <!--<div class="ui segment" id="oss-sticky-left">-->
 <!--    <div class="left ui rail" style="">-->
 <!--        <p></p>-->

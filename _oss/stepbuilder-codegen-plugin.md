@@ -4,7 +4,7 @@ title:  Stepbuilder Codegen Plugin
 description: Generate JAVA StepBuilder with IntelliJ
 author: sbeex
 tags: [ jetbrains, intellij, java ]
-image: assets/images/oss/stepbuilder.png
+image: assets/images/oss/stepbuilder-codegen.svg
 repository: https://github.com/sebastienvermeille/intellij-stepbuilder-codegen-plugin
 license: Apache license 2.0
 subtheme: sub-theme-oss
