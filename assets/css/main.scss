@@ -15,18 +15,20 @@
 @import "starsnonscss";
 @import "source-code-block";
 @import "premonition";
-
+@import "rainbow";
 
 $themes: (
 	dark: (
 					primary: white,
 					secondary: grey,
-					primary-bg-color: black
+					primary-bg-color: black,
+					secondary-bg-color: #222
 	),
 	light: (
 					primary: #4287f5,
 					secondary: #666666,
-					primary-bg-color: white
+					primary-bg-color: white,
+					secondary-bg-color: white
 	)
 );
 
@@ -115,34 +117,10 @@ $sub-themes: (
 
 body {
 	@include theme using ($colors) {
+		//TODO: uncomment this but this break the rainbow animation
 		background: map-get($colors, primary-bg-color);
 		color: map-get($colors, primary);
 	}
-}
-
-.text-center {
-	text-align:center;
-}
-
-ul.tags-list {
-	list-style-type: none;
-}
-
-ul.tags-list > li {
-	border-radius: 30px;
-	padding: 5px 8px;
-	display:inline-flex;
-
-	background-image: linear-gradient(to right, #901ec1 0%, #7450fe 51%, #901ec1 100%);
-	-webkit-transition: all 500ms;
-	transition: all 500ms;
-	background-size: 200% auto;
-	color: #fff !important;
-	border:1px solid white;
-}
-
-ul.tags-list > li > a {
-	color: white;
 }
 
 .btn-gradiant {
@@ -161,6 +139,16 @@ ul.tags-list > li > a {
 	margin: 30px auto auto;
 }
 
+.box.inverted {
+	@include theme using ($colors) {
+		background: map-get($colors, secondary-bg-color);
+		//color:  map-get($colors, primary);
+	}
+}
+
+.logo.inverted {
+	filter: invert(100%);
+}
 
 
 /*======================
@@ -270,3 +258,45 @@ footer {
 .text-centered {
 	text-align:center;
 }
+
+///*animate the background gradient position, use vh so that start/end syncs up viewport horizontal*/
+//@keyframes rainbow {
+//	from {background-position: -100vh 0}
+//	to {background-position: 100vh 0}
+//}
+//
+///*compatibility*/
+//@-moz-keyframes rainbow {
+//	from {background-position: -100vh 0}
+//	to {background-position: 100vh 0}
+//}
+//@-webkit-keyframes rainbow {
+//	from {background-position: -100vh 0}
+//	to {background-position: 100vh 0}
+//}
+//@-ms-keyframes rainbow {
+//	from {background-position: -100vh 0}
+//	to {background-position: 100vh 0}
+//}
+//@-o-keyframes rainbow {
+//	from {background-position: -100vh 0}
+//	to {background-position: 100vh 0}
+//}
+//
+//.rainbow {
+//	border: double 0.3em transparent;
+//	border-radius: 200px;
+//	/*added a colourstop here, without the third colourstop you get a hard edge*/
+//	background: linear-gradient(white, white),
+//	repeating-linear-gradient(to right,#051937, #004d7a, #008793, #00bf72, #a8eb12)
+//	background-origin: border-box;
+//	background-clip: content-box, border-box;
+//
+//
+//	animation-name: rainbow;
+//	animation-duration:  2s;
+//
+//	/*set animation to continue forever, and to move at a single rate instead of easing*/
+//	animation-iteration-count: infinite;
+//	animation-timing-function: linear;
+//}

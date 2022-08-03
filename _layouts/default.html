@@ -141,7 +141,8 @@
 <footer class="footer">
     <div class="footer-top"></div>
 
-    <div class="is-hidden-tablet">
+    <div class="container">
+            <div class="is-hidden-tablet">
         <span class="select is-fullwidth">
         <select id="destination-selector">
             <option value="">Choose a category ...</option>
@@ -154,63 +155,65 @@
             <option value="/categories/design-pattern/index.html">Design pattern</option>
         </select>
         </span>
+            </div>
+
+            <div class="columns is-hidden-mobile">
+                <div class="column">
+                    Languages
+                    <ul>
+                        <li>
+                            <a href="/categories/java/index.html" class="item">JAVA</a>
+                        </li>
+                        {% comment %}
+                        <a href="/categories/python/index.html" class="item">Python</a>
+                        <a href="/categories/php/index.html" class="item">PHP</a>
+                        <a href="/categories/jslang/index.html" class="item">Javascript / Typescript</a>
+                        {% endcomment %}
+                    </ul>
+                </div>
+                <div class="column">
+                    Tooling
+                    <ul>
+                        {% comment %}
+                        <li>
+                            <a href="/categories/ci-cd.html" class="item">CI/CD</a>
+                        </li>
+                        <li>
+                            <a href="/categories/docker.html" class="item">Docker</a>
+                        </li>
+                        {% endcomment %}
+                        <li>
+                            <a href="/categories/unraid/index.html" class="item">Unraid</a>
+                        </li>
+                        <li>
+                            <a href="/categories/iot/index.html" class="item">IoT</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="column">
+                    Concepts
+                    <ul>
+                        {% comment %}
+                        <li>
+                            <a href="#" class="item">Data modeling</a>
+                        </li>
+                        {% endcomment %}
+                        <li>
+                            <a href="/categories/design-pattern/index.html" class="item">Design pattern</a>
+                        </li>
+                        {% comment %}
+                        <li>
+                            <a href="#" class="item">Recipes, Cookbook</a>
+                        </li>
+                        <li>
+                            <a href="#" class="item">Opinionated thoughts</a>
+                        </li>
+                        {% endcomment %}
+                    </ul>
+                </div>
+            </div>
     </div>
 
-    <div class="columns is-hidden-mobile">
-        <div class="column">
-            Languages
-            <ul>
-                <li>
-                    <a href="/categories/java/index.html" class="item">JAVA</a>
-                </li>
-                {% comment %}
-                <a href="/categories/python/index.html" class="item">Python</a>
-                <a href="/categories/php/index.html" class="item">PHP</a>
-                <a href="/categories/jslang/index.html" class="item">Javascript / Typescript</a>
-                {% endcomment %}
-            </ul>
-        </div>
-        <div class="column">
-            Tooling
-            <ul>
-                {% comment %}
-                <li>
-                    <a href="/categories/ci-cd.html" class="item">CI/CD</a>
-                </li>
-                <li>
-                    <a href="/categories/docker.html" class="item">Docker</a>
-                </li>
-                {% endcomment %}
-                <li>
-                    <a href="/categories/unraid/index.html" class="item">Unraid</a>
-                </li>
-                <li>
-                    <a href="/categories/iot/index.html" class="item">IoT</a>
-                </li>
-            </ul>
-        </div>
-        <div class="column">
-            Concepts
-            <ul>
-                {% comment %}
-                <li>
-                    <a href="#" class="item">Data modeling</a>
-                </li>
-                {% endcomment %}
-                <li>
-                    <a href="/categories/design-pattern/index.html" class="item">Design pattern</a>
-                </li>
-                {% comment %}
-                <li>
-                    <a href="#" class="item">Recipes, Cookbook</a>
-                </li>
-                <li>
-                    <a href="#" class="item">Opinionated thoughts</a>
-                </li>
-                {% endcomment %}
-            </ul>
-        </div>
-    </div>
 
     <div class="separator-line"></div>
 

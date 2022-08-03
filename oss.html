@@ -6,20 +6,26 @@ subtheme: sub-theme-oss
 ---
 
 <section class="section">
-    <h1 class="title gradient-text">Open source contributions</h1>
-    <h2 class="subtitle">
-        OSS projects I maintain or contribute actively
-    </h2>
+    <div class="container">
+        <h1 class="title gradient-text">Open source contributions</h1>
+        <h2 class="subtitle">
+            OSS projects I maintain or contribute actively
+        </h2>
+    </div>
 </section>
 
 <section class="section">
 <div class="container ">
     <div class="content">
+<!--        <a class="has-gradient-border-hover m-4" href="blog.html">this is a test</a>-->
 
-    <div class="link cards">
+
+        <div class="link cards">
         {% for project in site.oss %}
-        <a href="{{ site.baseurl }}{{ project.url }}">
-            <div class="card ">
+<!--            <p class="has-gradient-border-hover m-4">css<br />is<br />awesome</p>-->
+            <a href="{{ site.baseurl }}{{ project.url }}">
+            <div class="card">
+<!--                <div class="card-content has-gradient-border-hover">-->
                 <div class="card-content">
                     <div class="media">
                         <div class="media-left">
