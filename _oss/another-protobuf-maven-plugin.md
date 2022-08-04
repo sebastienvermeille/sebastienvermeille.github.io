@@ -1,11 +1,11 @@
 ---
 layout: oss
-title:  Protobuf maven plugin
+title:  Another protobuf maven plugin
 description: A plugin that integrates protocol buffers compiler (protoc) into Maven lifecycle.
 author: sbeex
 tags: [ maven, protobuf, java ]
 image: assets/images/oss/Apache_Maven_logo.svg
-repository: https://github.com/sebastienvermeille/protobuf-maven-plugin
+repository: https://github.com/sebastienvermeille/another-protobuf-maven-plugin
 license: Apache license 2.0
 subtheme: sub-theme-oss
 ---
