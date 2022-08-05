@@ -6,7 +6,7 @@ author: sbeex
 tags: [ maven, protobuf, java ]
 image: assets/images/oss/Apache_Maven_logo.svg
 repository: https://github.com/sebastienvermeille/another-protobuf-maven-plugin
-documentation: https://another-protobuf-maven-plugin.cookiecode.dev/
+documentation: https://cookiecode.dev/another-protobuf-maven-plugin/
 license: Apache license 2.0
 subtheme: sub-theme-oss
 ---
