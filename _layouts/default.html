@@ -1,30 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>{{ page.title }} | {{site.name}}</title>
-        <link rel="icon" href="{{ site.baseurl }}/{{ site.logo }}">
-        <link href="{{ site.baseurl }}/assets/css/main.css" rel="stylesheet">
-        <link href="{{ site.baseurl }}/assets/vendors/fontawesome/css/all.css" rel="stylesheet">
-        {% seo %}
-    </head>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>{{ page.title }} | {{site.name}}</title>
+	<link rel="icon" href="{{ site.baseurl }}/{{ site.logo }}">
+	<link href="{{ site.baseurl }}/assets/css/main.css" rel="stylesheet">
+	<link href="{{ site.baseurl }}/assets/vendors/fontawesome/css/all.css" rel="stylesheet">
+	{% seo %}
+</head>
 
-    {% if jekyll.environment == 'production' %}
-    <!-- change your GA id in _config.yml -->
-    <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+{% if jekyll.environment == 'production' %}
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
     ga('create', '{{site.google_analytics}}', 'auto');
     ga('send', 'pageview');
-    </script>
-    {% endif %}
+</script>
+{% endif %}
 
 {% capture layout %}{% if page.layout %}layout-{{ page.layout }}{% endif %}{% endcapture %}
 
-    {% assign subtheme = page.subtheme | default: 'sub-theme-simple-page' %}
+{% assign subtheme = page.subtheme | default: 'sub-theme-simple-page' %}
 
 <body class="{{layout}} {{ subtheme }}">
 <!--	&lt;!&ndash; defer loading of font and font awesome &ndash;&gt;-->
@@ -32,287 +38,157 @@
 <!--		<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">-->
 <!--	</noscript>-->
 
-    <nav class="navbar gradient-bg lavel" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            {% assign splittedUrl = page.url | downcase | split: '/' %}
-            <a class="navbar-item" href="{{ site.baseurl }}/index.html">
-                <img src="{{ site.baseurl }}/{{ site.logo }}" width="28" height="28" alt="{{ site.name }} logo">
-            </a>
+<nav class="navbar gradient-bg lavel" role="navigation" aria-label="main navigation">
+	<div class="navbar-brand">
+		{% assign splittedUrl = page.url | downcase | split: '/' %}
+		<a class="navbar-item" href="{{ site.baseurl }}/index.html">
+			<img src="{{ site.baseurl }}/{{ site.logo }}" width="28" height="28" alt="{{ site.name }} logo">
+		</a>
 
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
-        </div>
+		<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+		</a>
+	</div>
+	<div id="navbar" class="navbar-menu is-unselectable">
+		<div class="navbar-start">
+			<a class="navbar-item {% if splittedUrl[1] == 'blog' %} is-active{% endif %}" href="{{ site.baseurl }}/blog/">
+				Blog
+			</a>
 
-        <!--        <a href="{{ site.baseurl }}/index.html" class="item{% if splittedUrl[1] == 'blog' %} active{% endif %}">Blog</a>-->
-        <!--        <a href="{{ site.baseurl }}/oss/" class="item{% if splittedUrl[1] == 'oss' %} active{% endif %}">Open Source</a>-->
-        <!--        <a href="{{ site.baseurl }}/about/" class="item{% if splittedUrl[1] == 'about' %} active{% endif %}">About me</a>-->
+			<a class="navbar-item {% if splittedUrl[1] == 'oss' %} is-active{% endif %}" href="{{ site.baseurl }}/oss/">
+				Open Source
+			</a>
 
-        <div id="navbar" class="navbar-menu">
-            <div class="navbar-start">
-                <a class="navbar-item {% if splittedUrl[1] == 'blog' %} is-active{% endif %}" href="{{ site.baseurl }}/blog/">
-                    Blog
-                </a>
+			<a class="navbar-item {% if splittedUrl[1] == 'oss' %} is-active{% endif %}" href="{{ site.baseurl }}/about/">
+				About me
+			</a>
+		</div>
 
-                <a class="navbar-item {% if splittedUrl[1] == 'oss' %} is-active{% endif %}" href="{{ site.baseurl }}/oss/">
-                    Open Source
-                </a>
-
-                <a class="navbar-item {% if splittedUrl[1] == 'oss' %} is-active{% endif %}" href="{{ site.baseurl }}/about/">
-                    About me
-                </a>
-
-<!--                <div class="navbar-item has-dropdown is-hoverable">-->
-<!--                    <a class="navbar-link">-->
-<!--                        More-->
-<!--                    </a>-->
-
-<!--                    <div class="navbar-dropdown">-->
-<!--                        <a class="navbar-item">-->
-<!--                            About-->
-<!--                        </a>-->
-<!--                        <a class="navbar-item">-->
-<!--                            Jobs-->
-<!--                        </a>-->
-<!--                        <a class="navbar-item">-->
-<!--                            Contact-->
-<!--                        </a>-->
-<!--                        <hr class="navbar-divider">-->
-<!--                        <a class="navbar-item">-->
-<!--                            Report an issue-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                </div>-->
-            </div>
-
-            <div class="navbar-end">
-                <div class="navbar-item">
-                    <div class="buttons has-addons">
-                        <button class="button is-small" onclick="themeSwitch('light');">
+		<div class="navbar-end">
+			<div class="navbar-item">
+				<div class="buttons has-addons">
+					<button class="button is-small" onclick="themeSwitch('light');">
                             <span class="icon is-small">
                             <i class="fas fa-sun"></i>
                           </span>
-                                            </button>
-                                            <button class="button is-small" onclick="themeSwitch('dark');">
+					</button>
+					<button class="button is-small" onclick="themeSwitch('dark');">
                             <span class="icon is-small">
                             <i class="fas fa-moon"></i>
                           </span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</nav>
 <label class="theme_changer" style="display:none;">
-    <input theme_toggle type="checkbox" id="theme_toggle">
-    <div class="button"></div>
+	<input theme_toggle type="checkbox" id="theme_toggle">
+	<div class="button"></div>
 </label>
 <main>
-    {{ content }}
+	{{ content }}
 </main>
 
-
-<!--&lt;!&ndash; Categories Jumbotron-->
-<!--================================================== &ndash;&gt;-->
-<!--<div class="jumbotron fortags">-->
-<!--	<div class="d-md-flex h-100">-->
-<!--		<div class="col-md-8 p-5 align-self-center text-center">-->
-<!--            {% assign categories_list = site.categories %}-->
-<!--            {% if categories_list.first[0] == null %}-->
-<!--                {% for category in categories_list %}-->
-<!--                    <a class="mt-1 mb-1" href="{{site.baseurl}}/categories#{{ category | url_escape | strip | replace: ' ', '-' }}">{{ category | camelcase }} ({{ site.tags[category].size }})</a>-->
-<!--                {% endfor %}-->
-<!--            {% else %}-->
-<!--                {% for category in categories_list %}-->
-<!--                    <a class="mt-1 mb-1" href="{{site.baseurl}}/categories#{{ category[0] | url_escape | strip | replace: ' ', '-' }}">{{ category[0] | camelcase }} ({{ category[1].size }})</a>-->
-<!--                {% endfor %}-->
-<!--            {% endif %}-->
-<!--            {% assign categories_list = nil %}-->
-<!--		</div>-->
-<!--	</div>-->
-<!--</div>-->
-
-
-<!-- Begin Footer
-================================================== -->
-
 <footer class="footer">
-    <div class="footer-top"></div>
+	<div class="footer-top"></div>
 
-    <div class="container">
-            <div class="is-hidden-tablet">
-        <span class="select is-fullwidth">
-        <select id="destination-selector">
-            <option value="">Choose a category ...</option>
-            <optgroup label="Languages">Languages</optgroup>
-            <option value="/categories/java/index.html">JAVA</option>
-            <optgroup label="Tooling">Tooling</optgroup>
-            <option value="/categories/unraid/index.html">Unraid</option>
-            <option value="/categories/iot/index.html">IoT</option>
-            <optgroup label="Concepts">Concepts</optgroup>
-            <option value="/categories/design-pattern/index.html">Design pattern</option>
-        </select>
-        </span>
-            </div>
+	<div class="container">
+		<div class="is-hidden-tablet">
+			<span class="select is-fullwidth">
+				<select id="destination-selector">
+					<option value="">Choose a category ...</option>
+					<optgroup label="Languages">Languages</optgroup>
+					<option value="/categories/java/index.html">JAVA</option>
+					<optgroup label="Tooling">Tooling</optgroup>
+					<option value="/categories/unraid/index.html">Unraid</option>
+					<option value="/categories/iot/index.html">IoT</option>
+					<optgroup label="Concepts">Concepts</optgroup>
+					<option value="/categories/design-pattern/index.html">Design pattern</option>
+				</select>
+			</span>
+		</div>
 
-            <div class="columns is-hidden-mobile">
-                <div class="column">
-                    Languages
-                    <ul>
-                        <li>
-                            <a href="/categories/java/index.html" class="item">JAVA</a>
-                        </li>
-                        {% comment %}
-                        <a href="/categories/python/index.html" class="item">Python</a>
-                        <a href="/categories/php/index.html" class="item">PHP</a>
-                        <a href="/categories/jslang/index.html" class="item">Javascript / Typescript</a>
-                        {% endcomment %}
-                    </ul>
-                </div>
-                <div class="column">
-                    Tooling
-                    <ul>
-                        {% comment %}
-                        <li>
-                            <a href="/categories/ci-cd.html" class="item">CI/CD</a>
-                        </li>
-                        <li>
-                            <a href="/categories/docker.html" class="item">Docker</a>
-                        </li>
-                        {% endcomment %}
-                        <li>
-                            <a href="/categories/unraid/index.html" class="item">Unraid</a>
-                        </li>
-                        <li>
-                            <a href="/categories/iot/index.html" class="item">IoT</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="column">
-                    Concepts
-                    <ul>
-                        {% comment %}
-                        <li>
-                            <a href="#" class="item">Data modeling</a>
-                        </li>
-                        {% endcomment %}
-                        <li>
-                            <a href="/categories/design-pattern/index.html" class="item">Design pattern</a>
-                        </li>
-                        {% comment %}
-                        <li>
-                            <a href="#" class="item">Recipes, Cookbook</a>
-                        </li>
-                        <li>
-                            <a href="#" class="item">Opinionated thoughts</a>
-                        </li>
-                        {% endcomment %}
-                    </ul>
-                </div>
-            </div>
-    </div>
+		<div class="columns is-hidden-mobile">
+			<div class="column">
+				Languages
+				<ul>
+					<li>
+						<a href="/categories/java/index.html" class="item">JAVA</a>
+					</li>
+					{% comment %}
+					<a href="/categories/python/index.html" class="item">Python</a>
+					<a href="/categories/php/index.html" class="item">PHP</a>
+					<a href="/categories/jslang/index.html" class="item">Javascript / Typescript</a>
+					{% endcomment %}
+				</ul>
+			</div>
+			<div class="column">
+				Tooling
+				<ul>
+					{% comment %}
+					<li>
+						<a href="/categories/ci-cd.html" class="item">CI/CD</a>
+					</li>
+					<li>
+						<a href="/categories/docker.html" class="item">Docker</a>
+					</li>
+					{% endcomment %}
+					<li>
+						<a href="/categories/unraid/index.html" class="item">Unraid</a>
+					</li>
+					<li>
+						<a href="/categories/iot/index.html" class="item">IoT</a>
+					</li>
+				</ul>
+			</div>
+			<div class="column">
+				Concepts
+				<ul>
+					{% comment %}
+					<li>
+						<a href="#" class="item">Data modeling</a>
+					</li>
+					{% endcomment %}
+					<li>
+						<a href="/categories/design-pattern/index.html" class="item">Design pattern</a>
+					</li>
+					{% comment %}
+					<li>
+						<a href="#" class="item">Recipes, Cookbook</a>
+					</li>
+					<li>
+						<a href="#" class="item">Opinionated thoughts</a>
+					</li>
+					{% endcomment %}
+				</ul>
+			</div>
+		</div>
+	</div>
 
 
-    <div class="separator-line"></div>
+	<div class="separator-line"></div>
 
-    <div class="content has-text-centered">
-        <p>
-            <strong>{{ site.name }}</strong> <a href="https://github.com/sebastienvermeille/sebastienvermeille.github.io/tree/master" target="_blank">source code</a> is licensed
-            <a href="http://opensource.org/licenses/mit-license.php" target="_blank">MIT</a>. The website content (articles in markdown files, logo)
-            are licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY NC SA 4.0</a>.
-        </p>
-    </div>
+	<div class="content has-text-centered">
+		<p>
+			<strong>{{ site.name }}</strong> <a href="https://github.com/sebastienvermeille/sebastienvermeille.github.io/tree/master"
+												target="_blank">source code</a> is licensed
+			<a href="https://opensource.org/licenses/mit-license.php" target="_blank">MIT</a>. The website content (articles in markdown
+			files, logo)
+			are licensed <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY NC SA 4.0</a>.
+		</p>
+	</div>
 </footer>
 
-<!--<footer class="footer">-->
-<!--    <div class="footer-top"></div>-->
-<!--            <div class="ui center aligned container no-dark">-->
-<!--                <div class="ui stackable divided grid no-dark">-->
-<!--                    <div class="three wide column no-dark">-->
-<!--                        <h4 class="ui header">Languages</h4>-->
-<!--                        <div class="ui link list">-->
-<!--                            <a href="/categories/java/index.html" class="item">JAVA</a>-->
-<!--                            {% comment %}-->
-<!--                            <a href="/categories/python/index.html" class="item">Python</a>-->
-<!--                            <a href="/categories/php/index.html" class="item">PHP</a>-->
-<!--                            <a href="/categories/jslang/index.html" class="item">Javascript / Typescript</a>-->
-<!--                            {% endcomment %}-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="three wide column no-dark">-->
-<!--                        <h4 class="ui header">Tooling</h4>-->
-<!--                        <div class="ui link list">-->
-<!--                            {% comment %}-->
-<!--                            <a href="/categories/ci-cd.html" class="item">CI/CD</a>-->
-<!--                            <a href="/categories/docker.html" class="item">Docker</a>-->
-<!--                            {% endcomment %}-->
-<!--                            <a href="/categories/unraid/index.html" class="item">Unraid</a>-->
-<!--                            <a href="/categories/iot/index.html" class="item">IoT</a>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="three wide column no-dark">-->
-<!--                        <h4 class="ui header">Concepts</h4>-->
-<!--                        <div class="ui link list">-->
-<!--                            {% comment %}<a href="#" class="item">Data modeling</a>{% endcomment %}-->
-<!--                            <a href="/categories/design-pattern/index.html" class="item">Design pattern</a>-->
-<!--                            {% comment %}<a href="#" class="item">Recipes, Cookbook</a>{% endcomment %}-->
-<!--                            {% comment %}<a href="#" class="item">Opinionated thoughts</a>{% endcomment %}-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="seven wide column no-dark">-->
-<!--                        <div class="ui link list">-->
-<!--                            <a href="/tags.html" class="item">Browse all tags</a>-->
-<!--                            <a href="/categories.html" class="item">Browse all categories</a>-->
-<!--                        </div>-->
-<!--                        <h4 class="ui header no-dark">"Knowledge increases by sharing but not by saving."</h4>-->
-<!--                        <p class="no-dark">Source: (not me but I like it :) -> Internet..</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
+<script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>
+<script src="{{ site.baseurl }}/assets/js/theme-switcher.js"></script>
+<script src="{{ site.baseurl }}/assets/js/theme.js"></script>
+<script src="{{ site.baseurl }}/assets/js/quotes.js"></script>
 
-<!--    <div class="separator-line"></div>-->
-<!--    <div class="footer-bottom">-->
-<!--        <p class="text-center">-->
-<!--            Copyright © {{ site.time | date: "%Y" }} {{ site.name }}-->
-<!--        </p>-->
-<!--    </div>-->
-<!--</footer>-->
-<!-- End Footer
-================================================== -->
-
-
-<!-- Scripts
-================================================== -->
-    <script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>
-
-    <script src="{{ site.baseurl }}/assets/js/theme-switcher.js"></script>
-    <script src="{{ site.baseurl }}/assets/js/theme.js"></script>
-    <script src="{{ site.baseurl }}/assets/js/quotes.js"></script>
-<!--    <script src="https://kit.fontawesome.com/95a5628c97.js" crossorigin="anonymous"></script>-->
-
-<!--    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.js"></script>-->
-
-<!--    <script>-->
-<!--        $('.ui.sticky')-->
-<!--            .sticky({-->
-<!--                context: '#oss-sticky-left',-->
-<!--                offset: 80-->
-<!--            })-->
-<!--        ;-->
-<!--    </script>-->
 
 <!--    <script src="{{ site.baseurl }}/assets/js/source-code-fancier.js"></script>-->
-<!--&lt;!&ndash;<script src="{{ site.baseurl }}/assets/vendor/fomantic-ui/javascripts/semantic-ui.js"></script>&ndash;&gt;-->
-
-<!--&lt;!&ndash;<script src="{{ site.baseurl }}/assets/js/mediumish.js"></script>&ndash;&gt;-->
-
-<!--&lt;!&ndash;{% if site.lazyimages == "enabled" %}&ndash;&gt;-->
-<!--&lt;!&ndash;<script src="{{ site.baseurl }}/assets/js/lazyload.js"></script>&ndash;&gt;-->
-<!--&lt;!&ndash;{% endif %}&ndash;&gt;-->
-
-<!--&lt;!&ndash;<script src="{{ site.baseurl }}/assets/js/ie10-viewport-bug-workaround.js"></script>&ndash;&gt;-->
 
 <!--{% if page.layout == 'post' %}-->
 <!--<script id="dsq-count-scr" src="//{{site.disqus}}.disqus.com/count.js"></script>-->

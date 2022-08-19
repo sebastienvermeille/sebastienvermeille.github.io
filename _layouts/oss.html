@@ -1,90 +1,49 @@
 ---
 layout: default
 ---
-
 <section class="section columns">
-
-<div class="container column is-10">
-    <h1 class="title gradient-text">{{ page.title }}</h1>
-    <h2 class="subtitle">
-        {{ page.description }}
-    </h2>
-    <div class="content">
-        <p> {{ content }}</p>
-        <p>
-            If you have suggestions, bugs to report for it please open issues on the github repo directly. PR are also weclome!
-        </p>
-    </div>
-</div>
-    <aside class="column is-2 is-narrow-mobile is-fullheight is-hidden-mobile">
-        <div class="section has-text-centered">
-            <img src="{{ site.baseurl }}/assets/logo/logo.svg" width="256" height="256" alt="{{ site.name }} logo" class="logo">
-
-            <!--            <img src="{{ site.baseurl }}/{{ site.logo }}" width="256" height="256" alt="{{ site.name }} logo">-->
-            <!--            <p>CookieCode</p>-->
-        </div>
-        <nav class="panel">
-            <p class="panel-heading">
-                Metadata
-            </p>
-            {% if page.documentation != null %}
-            <div class="panel-block">
+	<div class="container column is-8">
+		<div class="content">
+			<h1 class="title gradient-text">{{ page.title }}</h1>
+			<h2 class="subtitle">{{ page.description }}</h2>
+			<p> {{ content }}</p>
+			<p>
+				If you have suggestions, bugs to report for it please open issues on the github repo directly. PR are
+				also welcome!
+			</p>
+		</div>
+	</div>
+	<aside class="column is-3 is-narrow-mobile is-fullheight is-hidden-mobile">
+		<div class="content has-text-centered is-unselectable">
+			<img src="{{ site.baseurl }}/assets/logo/logo.svg" width="225" height="225" alt="{{ site.name }} logo" class="logo">
+		</div>
+		<nav class="panel is-unselectable">
+			<p class="panel-heading is-size-6">Metadata</p>
+			{% if page.documentation != null %}
+			<div class="panel-block is-size-7">
                 <span class="panel-icon">
                     <i class="fas fa-book" aria-hidden="true"></i>
                 </span>
-                <a class="item" href="{{ page.documentation }}"> Documentation</a>
-            </div>
-            {% endif %}
-            <div class="panel-block">
+				<a class="item" href="{{ page.documentation }}"> Documentation</a>
+			</div>
+			{% endif %}
+			<div class="panel-block is-size-7">
                 <span class="panel-icon">
                     <i class="fas fa-code" aria-hidden="true"></i>
                 </span>
-                <a class="item" href="{{ page.repository }}"> Source code</a>
-            </div>
-            <div class="panel-block">
+				<a class="item" href="{{ page.repository }}"> Source code</a>
+			</div>
+			<div class="panel-block is-size-7">
                 <span class="panel-icon">
                   <i class="fas fa-file" aria-hidden="true"></i>
                 </span>
-                {{ page.license }}
-            </div>
-
-
-            <div class="panel-block">
-                {% assign sortedTags = page.tags | sort %}
-                {% include tags.html tags=sortedTags %}
-            </div>
-        </nav>
-    </aside>
-<!--<div class="ui segment" id="oss-sticky-left">-->
-<!--    <div class="left ui rail" style="">-->
-<!--        <p></p>-->
-<!--        <p></p>-->
-<!--        <p></p>-->
-<!--        <div class="ui sticky">-->
-<!--            <div class="overlay">-->
-<!--                <div class="ui labeled icon vertical menu">-->
-<!--                    <a class="item" target="_blank" href="https://twitter.com/intent/tweet?text={{ page.title }}&url={{ page.url | absolute_url }}" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">-->
-<!--                        <i class="fa-brands fa-twitter icon"></i>-->
-<!--                    </a>-->
-<!--                    <a class="item" target="_blank" href="https://facebook.com/sharer.php?u={{ page.url | absolute_url }}" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">-->
-<!--                        <i class="fa-brands fa-facebook icon"></i>-->
-<!--                    </a>-->
-<!--                    <a class="item" target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url={{ page.url | absolute_url }}" onclick="window.open(this.href, 'width=550,height=435');return false;">-->
-<!--                    <i class="fa-brands fa-linkedin icon"></i>-->
-<!--                    </a>-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="right ui rail">-->
-<!--        <div class="ui sticky" style="width: 272px !important; height: 262.672px !important; left: 2317.5px;">-->
-<!--            <div class="ui labeled icon vertical menu" id="metadata-stickya">-->
-<!--                <a class="item" href="{{ page.repository }}"><i class="fa-solid fa-code icon"></i> Source code</a>-->
-<!--                <a class="item"><i class="fa-solid fa-file icon"></i> License</a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-
-
+				{{ page.license }}
+			</div>
+			<div class="panel-block is-clipped">
+				{% assign sortedTags = page.tags | sort %}
+				{% include tags.html tags=sortedTags %}
+			</div>
+		</nav>
+		<nav class="panel is-unselectable">{% include me.html %}</nav>
+	</aside>
 </section>
