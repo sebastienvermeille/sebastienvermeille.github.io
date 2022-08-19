@@ -9,9 +9,10 @@ url: "https://cookiecode.dev"
 locale: 'en_US'
 # comment when publish to git
 #baseurl: "/cookie"
-google_analytics: 'UA-91985102-2'
+google_analytics: 'G-08V6SWRTHK'
+google_adsense_client: 'ca-pub-4328681465012055'
 #mailchimp-list: 'https://wowthemes.us11.list-manage.com/subscribe/post?u=8aeb20a530e124561927d3bd8&amp;id=8c3d2d214b'
-include: ["_pages"]
+include: [ "_pages" ]
 permalink: "/:categories/:title:output_ext"
 
 # Authors
@@ -79,7 +80,7 @@ collections:
   oss:
     output: true
 
-exclude: [changelog.md, LICENSE.txt, README.md, Gemfile, Gemfile.lock]
+exclude: [ changelog.md, LICENSE.txt, README.md, Gemfile, Gemfile.lock ]
 
 sass:
   sass_dir: _sass
