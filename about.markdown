@@ -24,7 +24,7 @@ Here is a subset of languages I've ever used:
 
 ##### OSS supporter
 
-As most of developers, I used to consume open source software (in professional life but also for private side projects).
+As developer, I used to consume open source software (in professional life but also for private side projects).
 No doubt about the amazing job that these people do (biggup to them btw).
 
 Since a few years now, I also try to contribute to the open source software community.
