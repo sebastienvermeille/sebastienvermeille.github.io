@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>[Howto] Create a voice reminder for daily meeting using NodeRed | CookieCode</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="[Howto] Create a voice reminder for daily meeting using NodeRed" />
+<meta name="author" content="sbeex" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="info “Pre requisiste” This article suppose you have a running nodered instance. If you don’t have one yet have a look here first." />
+<meta property="og:description" content="info “Pre requisiste” This article suppose you have a running nodered instance. If you don’t have one yet have a look here first." />
+<link rel="canonical" href="https://cookiecode.dev/iot/nodered-daily-reminder.html" />
+<meta property="og:url" content="https://cookiecode.dev/iot/nodered-daily-reminder.html" />
+<meta property="og:site_name" content="CookieCode" />
+<meta property="og:image" content="https://cookiecode.dev/assets/images/articles/node-red-icon-2.svg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-06-17T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://cookiecode.dev/assets/images/articles/node-red-icon-2.svg" />
+<meta property="twitter:title" content="[Howto] Create a voice reminder for daily meeting using NodeRed" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"sbeex"},"dateModified":"2022-06-17T00:00:00+00:00","datePublished":"2022-06-17T00:00:00+00:00","description":"info “Pre requisiste” This article suppose you have a running nodered instance. If you don’t have one yet have a look here first.","headline":"[Howto] Create a voice reminder for daily meeting using NodeRed","image":"https://cookiecode.dev/assets/images/articles/node-red-icon-2.svg","mainEntityOfPage":{"@type":"WebPage","@id":"https://cookiecode.dev/iot/nodered-daily-reminder.html"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://cookiecode.dev/assets/logo/png/logo.png"},"name":"sbeex"},"url":"https://cookiecode.dev/iot/nodered-daily-reminder.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" href="/assets/logo/png/logo.png">
+	<link href="/assets/css/main.css" rel="stylesheet">
+	<link href="/assets/vendors/fontawesome/css/all.css" rel="stylesheet">
+</head>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-08V6SWRTHK"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'G-08V6SWRTHK');
+</script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4328681465012055"
+		crossorigin="anonymous"></script>
+
+
+
+
+
+
+<body class="layout-post sub-theme-concept">
+<!--	&lt;!&ndash; defer loading of font and font awesome &ndash;&gt;-->
+<!--	<noscript id="deferred-styles">-->
+<!--		<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">-->
+<!--	</noscript>-->
+
+<nav class="navbar gradient-bg lavel" role="navigation" aria-label="main navigation">
+	<div class="navbar-brand">
+		
+		<a class="navbar-item" href="/index.html">
+			<img src="/assets/logo/png/logo.png" width="28" height="28" alt="CookieCode logo">
+		</a>
+
+		<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+		</a>
+	</div>
+	<div id="navbar" class="navbar-menu is-unselectable">
+		<div class="navbar-start">
+			<a class="navbar-item " href="/blog/">
+				Blog
+			</a>
+
+			<a class="navbar-item " href="/oss/">
+				Open Source
+			</a>
+
+			<a class="navbar-item " href="/about/">
+				About me
+			</a>
+		</div>
+
+		<div class="navbar-end">
+			<div class="navbar-item">
+				<div class="buttons has-addons">
+					<button class="button is-small" onclick="themeSwitch('light');">
+                            <span class="icon is-small">
+                            <i class="fas fa-sun"></i>
+                          </span>
+					</button>
+					<button class="button is-small" onclick="themeSwitch('dark');">
+                            <span class="icon is-small">
+                            <i class="fas fa-moon"></i>
+                          </span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</nav>
+<label class="theme_changer" style="display:none;">
+	<input theme_toggle type="checkbox" id="theme_toggle">
+	<div class="button"></div>
+</label>
+<main>
+	<section class="section columns">
+    <div class="container column is-8">
+        <div class="content">
+            <h1 class="title gradient-text">[Howto] Create a voice reminder for daily meeting using NodeRed</h1>
+            <figure class="image is-3by1">
+                <img src="/assets/images/articles/node-red-icon-2.svg" alt="[Howto] Create a voice reminder for daily meeting using NodeRed">
+            </figure>
+            <div class="premonition info">
+  <i class="premonition pn-info"></i>
+  <div class="content">
+    <p class="header">Pre requisiste</p>
+<p>This article suppose you have a running nodered instance.</p>
+
+<p>If you don’t have one yet have a look <a href="https://nodered.org/docs/getting-started/">here</a> first.</p>
+
+
+
+
+  </div>
+</div>
+
+<h2 id="goal">Goal</h2>
+
+<div class="premonition note">
+  <i class="premonition pn-note"></i>
+  <div class="content">
+    <p class="header">As a passionated programmer I need a reminder at `08:58` each working day (monday to friday)</p>
+<p>That way if I am totally focussed on my coding session I still get a reminder.</p>
+
+
+
+
+  </div>
+</div>
+
+<h3 id="acceptance-criteria">Acceptance criteria:</h3>
+<ul>
+  <li>A notification sound will be played in SONOS to remind me about it (audio effect)
+    <ul>
+      <li>This sound will be generated using <a href="https://ttsmp3.com/">ttsmp3.com </a>free online tool
+        <ul>
+          <li>given text: <code class="language-plaintext highlighter-rouge">Sir, the daily meeting starts in a few. Are you ready ?</code>
+</li>
+          <li>voice: <code class="language-plaintext highlighter-rouge">US English / Matthew</code>
+</li>
+          <li>note: You can download the mp3 file <a href="../assets/audio/daily-meeting-reminder.mp3">here</a> directly</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>A philips HUE effect will appear on my led strip (visual effect)</li>
+</ul>
+
+<p>This way we have some fallback in the system and can reduce late joins of 99.9% <img class="emoji" title=":+1:" alt=":+1:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f44d.png" height="20" width="20"></p>
+
+<h3 id="implementation-using-nodered">Implementation using NodeRed</h3>
+
+<p>In order to achieve that we will need two nodered extensions:</p>
+<ul>
+  <li>Sonos</li>
+  <li>Hue</li>
+</ul>
+
+<div class="premonition warning">
+  <i class="premonition pn-warn"></i>
+  <div class="content">
+    <p>TO COMPLETE</p>
+
+
+
+
+  </div>
+</div>
+
+<p>Basically here we will have the following flow:</p>
+
+<p><img src="../assets/images/articles/nodered-predaily-meeting-reminder.png" alt=""></p>
+
+<p>First we trigger this only at <code class="language-plaintext highlighter-rouge">08:58</code> during working days:</p>
+
+<p><img src="../assets/images/articles/noderaid-predaily-scheduler.png" alt=""></p>
+
+<div class="premonition warning">
+  <i class="premonition pn-warn"></i>
+  <div class="content">
+    <p class="header">Warning</p>
+<p>Node red will use the timezone defined in your instance. (If you run under docker you can define it via the env <code class="language-plaintext highlighter-rouge">TZ=Europe/Paris</code> or something else based on your region.)</p>
+
+<p>(This concerns point 2) of the screenshot)</p>
+
+
+
+
+  </div>
+</div>
+
+<p>Then we trigger some actions</p>
+
+<div class="premonition warning">
+  <i class="premonition pn-warn"></i>
+  <div class="content">
+    <p>TO COMPLETE</p>
+
+
+
+
+  </div>
+</div>
+
+<p>Here is the snippet of code that you can import into node red directly:</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="source-code"><code><table class="rouge-table"><tbody><tr>
+<td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td>
+<td class="rouge-code"><pre><span class="err">//</span><span class="w"> </span><span class="err">TO</span><span class="w"> </span><span class="err">DO</span><span class="w">
+</span></pre></td>
+</tr></tbody></table></code></pre></div></div>
+
+<h2 id="references">References</h2>
+
+        </div>
+    </div>
+    <aside class="column is-3 is-narrow-mobile is-fullheight is-hidden-mobile">
+        <div class="content has-text-centered is-unselectable">
+            <img src="/assets/logo/logo.svg" width="225" height="225" alt="CookieCode logo" class="logo">
+        </div>
+        <nav class="panel is-unselectable">
+            <p class="panel-heading is-size-6">
+                Metadata
+            </p>
+            <div class="panel-block is-size-7">
+                <span class="panel-icon">
+                  <i class="fas fa-clock" aria-hidden="true"></i>
+                </span>
+                Reading time: ~1 minute
+            </div>
+            <div class="panel-block is-size-7">
+                <span class="panel-icon">
+                  <i class="fas fa-calendar" aria-hidden="true"></i>
+                </span>
+                <time class="post-date" datetime="2022-06-17">Published: 2022/06/17</time>
+            </div>
+
+            
+
+            <div class="panel-block is-clipped">
+                
+                <nav class="level is-mobile">
+	<div class="level-left">
+		<div class="field is-grouped is-grouped-multiline">
+			
+			<div class="control">
+				<div class="tags has-addons">
+					<a class="tag is-link" href="/tag/hue">hue</a>
+					<span class="tag">
+                        <span class="icon">
+                            <i class="fas fa-tag"></i>
+                        </span>
+                    </span>
+				</div>
+			</div>
+			
+			<div class="control">
+				<div class="tags has-addons">
+					<a class="tag is-link" href="/tag/nodered">nodered</a>
+					<span class="tag">
+                        <span class="icon">
+                            <i class="fas fa-tag"></i>
+                        </span>
+                    </span>
+				</div>
+			</div>
+			
+			<div class="control">
+				<div class="tags has-addons">
+					<a class="tag is-link" href="/tag/scrum">scrum</a>
+					<span class="tag">
+                        <span class="icon">
+                            <i class="fas fa-tag"></i>
+                        </span>
+                    </span>
+				</div>
+			</div>
+			
+			<div class="control">
+				<div class="tags has-addons">
+					<a class="tag is-link" href="/tag/sonos">sonos</a>
+					<span class="tag">
+                        <span class="icon">
+                            <i class="fas fa-tag"></i>
+                        </span>
+                    </span>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</nav>
+            </div>
+        </nav>
+        <nav class="panel is-unselectable"><p class="panel-heading is-size-6">Sebastien Vermeille</p>
+<div class="navbar-item is-size-7">
+	Highly passionate programmer with an insatiable quest for knowledge. <br>Interested in Clean Code concepts, good practices, software
+	architecture, emerging frameworks, <br>and also in electronics IoT, DIY projects.
+</div>
+<div class="panel-block">
+	<a class="button is-link is-outlined is-fullwidth" href="/about">More about me</a>
+</div>
+</nav>
+    </aside>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="content">
+<section class="disqus">
+
+    <div id="disqus_thread"></div>
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+        /*
+        var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        */
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            var disqus_shortname = '';
+            s.src = 'https://cookiecode-dev.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+</section>
+</div>
+    </div>
+</section>
+
+<section class="section">
+    <h1 class="title gradient-text">Discover more articles...</h1>
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        
+        <a class="pagination-previous" href="//tools/ttsmp3-free-online-text-to-speech.html"> « [Howto] Convert a text to a speech audio file for free using TTSMP3</a>
+        
+        
+    </nav>
+</section>
+
+</main>
+
+<footer class="footer">
+	<div class="footer-top"></div>
+
+	<div class="container">
+		<div class="is-hidden-tablet">
+			<span class="select is-fullwidth">
+				<select id="destination-selector">
+					<option value="">Choose a category ...</option>
+					<optgroup label="Languages">Languages</optgroup>
+					<option value="/categories/java/index.html">JAVA</option>
+					<optgroup label="Tooling">Tooling</optgroup>
+					<option value="/categories/unraid/index.html">Unraid</option>
+					<option value="/categories/iot/index.html">IoT</option>
+					<optgroup label="Concepts">Concepts</optgroup>
+					<option value="/categories/design-pattern/index.html">Design pattern</option>
+				</select>
+			</span>
+		</div>
+
+		<div class="columns is-hidden-mobile">
+			<div class="column">
+				Languages
+				<ul>
+					<li>
+						<a href="/categories/java/index.html" class="item">JAVA</a>
+					</li>
+					
+				</ul>
+			</div>
+			<div class="column">
+				Tooling
+				<ul>
+					
+					<li>
+						<a href="/categories/unraid/index.html" class="item">Unraid</a>
+					</li>
+					<li>
+						<a href="/categories/iot/index.html" class="item">IoT</a>
+					</li>
+				</ul>
+			</div>
+			<div class="column">
+				Concepts
+				<ul>
+					
+					<li>
+						<a href="/categories/design-pattern/index.html" class="item">Design pattern</a>
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="separator-line"></div>
+
+	<div class="content has-text-centered">
+		<p>
+			<strong>CookieCode</strong> <a href="https://github.com/sebastienvermeille/sebastienvermeille.github.io/tree/master" target="_blank">source code</a> is licensed
+			<a href="https://opensource.org/licenses/mit-license.php" target="_blank">MIT</a>. The website content (articles in markdown
+			files, logo)
+			are licensed <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY NC SA 4.0</a>.
+		</p>
+	</div>
+</footer>
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/theme-switcher.js"></script>
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/quotes.js"></script>
+
+
+<!--    <script src="/assets/js/source-code-fancier.js"></script>-->
+
+<!---->
+<!--<script id="dsq-count-scr" src="//.disqus.com/count.js"></script>-->
+<!---->
+
+</body>
+</html>
